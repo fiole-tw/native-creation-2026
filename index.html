@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>原生製造海選｜2026 第五屆原生製造國際色彩大賞</title>
+  <meta name="description" content="Down The Rabbit Hole — 2026 第五屆原生製造國際色彩大賞。線上海選現正開放，三階段賽制讓你的色彩被產業看見。" />
+  <meta property="og:title" content="線上海選｜2026 5th International Native Creation Color Awards" />
+  <meta property="og:description" content="Down The Rabbit Hole — 三階段賽制、自由主題、總獎勵價值新台幣 50 萬起。" />
+  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='75' font-size='80'%3E%E2%9C%A8%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sky-50: #f0f7fc;
+      --sky-100: #dbe9f3;
+      --sky-200: #b9d3e8;
+      --sky-300: #8fb8d7;
+      --sky-500: #4d8bbf;
+      --grass-100: #d5e6bb;
+      --grass-300: #9bc372;
+      --grass-500: #6b974a;
+      --pink-100: #fce0e8;
+      --pink-200: #f8c5d4;
+      --pink-300: #f29ab1;
+      --pink-500: #d96b8a;
+      --silver-50: #ffffff;
+      --silver-100: #f3f4f6;
+      --silver-300: #c8ccd0;
+      --silver-500: #8a8f95;
+      --silver-700: #4a4e54;
+      --ink: #1a2438;
+      --ink-soft: #4a5570;
+      --paper: #fafaf7;
+      --paper-warm: #f5f1ea;
+      --font-display: "Bodoni Moda", "Noto Serif TC", Georgia, serif;
+      --font-sans: "Inter", "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius-s: 10px;
+      --radius-m: 18px;
+      --radius-l: 28px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 8px 28px rgba(58, 75, 110, 0.08);
+      --shadow-card: 0 12px 40px rgba(58, 75, 110, 0.12);
+      --shadow-chrome: 0 6px 18px rgba(40, 60, 90, 0.22);
+      --max: 1180px;
+    }
+    /* ─── 主視覺底圖 ─── */
+    .page-bg {
+      position: fixed; inset: 0; z-index: -2;
+      background-image: url('assets/poster.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+    /* 白膜：洗淡海報上的文字，讓網頁內容可讀 */
+    .page-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(250, 250, 247, 0.62);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.7;
+      overflow-x: hidden;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; position: relative; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--silver-300);
+      border-radius: var(--radius-pill);
+      font-size: 12px; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
+      margin-bottom: 20px;
+    }
+    .section-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pink-300); }
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+    h2.display { font-size: clamp(34px, 4.5vw, 56px); margin-bottom: 16px; line-height: 1.2; }
+    h3.display { font-size: clamp(24px, 3vw, 36px); }
+    .lead { font-size: clamp(16px, 1.4vw, 19px); color: var(--ink-soft); max-width: 720px; }
+    .chrome {
+      background: linear-gradient(180deg, #ffffff 0%, #c8ccd1 18%, #5f6671 48%, #b4b9c0 70%, #f6f7f8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 2px 0 rgba(70,82,100,0.55)) drop-shadow(0 6px 16px rgba(30,45,70,0.28));
+      font-style: italic;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      font-weight: 500; font-size: 15px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: linear-gradient(180deg, #2d3a52 0%, #1a2438 100%);
+      color: #fff;
+      box-shadow: var(--shadow-chrome);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(40,60,90,0.3); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.6);
+      color: var(--ink);
+      border: 1px solid var(--silver-300);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover { background: #fff; }
+    .btn-arrow { transition: transform 0.2s ease; }
+    .btn:hover .btn-arrow { transform: translateX(4px); }
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 24px;
+      transition: background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(250,250,247,0.85);
+      backdrop-filter: blur(18px);
+      border-bottom-color: rgba(0,0,0,0.06);
+      padding: 14px 24px;
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .logo { font-family: var(--font-sans); font-weight: 700; font-size: 13px; letter-spacing: 0.1em; line-height: 1.35; max-width: 60%; }
+    .logo em { font-style: normal; color: var(--pink-500); margin: 0 4px; }
+    .logo-short { display: none; }
+    @media (max-width: 640px) {
+      .logo-full { display: none; }
+      .logo-short { display: inline; font-size: 15px; letter-spacing: 0.22em; }
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; flex-shrink: 0; }
+    .nav-links a { font-size: 14px; color: var(--ink-soft); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .btn { padding: 10px 20px; font-size: 14px; }
+    .nav-toggle { display: none; font-size: 22px; color: var(--ink); padding: 4px 8px; }
+    @media (max-width: 860px) {
+      .nav-links a:not(.btn) { display: none; }
+      .nav-toggle { display: inline-flex; }
+    }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border-radius: 50%;
+      filter: blur(40px); opacity: 0.6; pointer-events: none;
+    }
+    .hero::before {
+      width: 260px; height: 260px; background: var(--pink-200);
+      top: 15%; right: 5%; animation: float1 12s ease-in-out infinite;
+    }
+    .hero::after {
+      width: 200px; height: 200px; background: var(--sky-200);
+      bottom: 20%; left: 3%; animation: float2 14s ease-in-out infinite;
+    }
+    @keyframes float1 { 0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)} }
+    @keyframes float2 { 0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(20px) translateX(15px)} }
+    .hero-inner {
+      max-width: 780px; margin: 0 auto;
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 8px 18px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.8);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--pink-500);
+      box-shadow: 0 0 0 4px var(--pink-100);
+      flex-shrink: 0;
+    }
+    .hero h1 { font-size: clamp(36px, 5.5vw, 72px); line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.02em; }
+    .hero h1 .row1 { display: block; font-family: var(--font-sans); font-weight: 700; font-size: 0.45em; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+    .hero h1 .row2 { display: block; font-style: italic; font-weight: 500; }
+    .hero-sub { font-size: clamp(16px, 1.4vw, 19px); color: var(--ink-soft); margin: 22px 0 32px; max-width: 480px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-meta {
+      margin-top: 36px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px 20px;
+      border-top: 1px solid rgba(26,36,56,0.12);
+      padding-top: 24px;
+    }
+    .hero-meta div { padding-right: 8px; }
+    .hero-meta dt { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
+    .hero-meta dd { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+    @media (max-width: 860px) {
+      .hero { padding-top: 110px; min-height: 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-meta { grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+    /* ABOUT */
+    .about {
+      background: linear-gradient(180deg, rgba(250,250,247,0.35) 0%, rgba(250,250,247,0.55) 100%);
+      backdrop-filter: blur(14px) saturate(1.1);
+      padding: 110px 24px;
+    }
+    .about-grid { max-width: 920px; margin: 0 auto; text-align: center; }
+    .pull-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(22px, 2.6vw, 30px);
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0 auto 28px;
+      max-width: 760px;
+    }
+    .pull-quote::before, .pull-quote::after { content: "—"; display: block; color: var(--pink-300); font-style: normal; font-size: 0.6em; margin: 12px auto; }
+    .about p { max-width: 720px; margin: 0 auto; color: var(--ink-soft); font-size: 16px; }
+    .about p + p { margin-top: 14px; }
+    /* STAGES */
+    .stages {
+      padding: 110px 24px;
+      background: linear-gradient(180deg, rgba(250,250,247,0.4) 0%, rgba(219,233,243,0.3) 100%);
+      backdrop-filter: blur(12px) saturate(1.1);
+    }
+    .stages-head { text-align: center; margin-bottom: 64px; }
+    .stages-head .lead { margin: 0 auto; }
+    .stages-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .stage-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: var(--radius-l);
+      padding: 36px 30px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stage-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+    .stage-card::before { content: ""; position: absolute; inset: 0; background: var(--g, var(--sky-100)); opacity: 0.35; z-index: -1; }
+    .stage-card:nth-child(1) { --g: radial-gradient(circle at 100% 0%, var(--sky-100), transparent 60%); }
+    .stage-card:nth-child(2) { --g: radial-gradient(circle at 100% 0%, var(--pink-100), transparent 60%); }
+    .stage-card:nth-child(3) { --g: radial-gradient(circle at 100% 0%, var(--grass-100), transparent 60%); }
+    .stage-num { font-family: var(--font-display); font-style: italic; font-size: 64px; line-height: 0.9; color: var(--ink); opacity: 0.15; margin-bottom: 8px; }
+    .stage-card h3 { font-size: 28px; margin-bottom: 8px; }
+    .stage-card .stage-kind { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 18px; line-height: 1.5; }
+    .stage-card p { color: var(--ink-soft); font-size: 15px; margin-bottom: 18px; }
+    .stage-list { list-style: none; border-top: 1px dashed rgba(26,36,56,0.15); padding-top: 16px; display: grid; gap: 8px; }
+    .stage-list li { font-size: 13px; color: var(--ink); display: flex; gap: 8px; line-height: 1.6; }
+    .stage-list li::before { content: "◆"; color: var(--pink-300); flex: 0 0 auto; font-size: 10px; line-height: 1.8; }
+    @media (max-width: 860px) { .stages-grid { grid-template-columns: 1fr; } }
+    /* AWARDS */
+    .awards {
+      padding: 110px 24px;
+      background: linear-gradient(180deg, rgba(219,233,243,0.3) 0%, rgba(252,224,232,0.35) 100%);
+      backdrop-filter: blur(12px) saturate(1.1);
+    }
+    .awards-head { text-align: center; margin-bottom: 56px; max-width: 820px; margin-left: auto; margin-right: auto; }
+    .awards-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .award-card { background: #fff; border-radius: var(--radius-m); padding: 28px 24px; box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.04); position: relative; overflow: hidden; }
+    .award-card.featured {
+      grid-column: span 3;
+      background: linear-gradient(135deg, #1a2438 0%, #2d3a52 100%);
+      color: #fff; padding: 40px 36px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;
+    }
+    .award-card.featured::after { content: ""; position: absolute; top: -40%; right: -10%; width: 320px; height: 320px; background: radial-gradient(circle, var(--pink-300) 0%, transparent 60%); opacity: 0.4; filter: blur(30px); }
+    .award-card.featured h3 { color: #fff; font-size: 48px; margin-bottom: 12px; position: relative; }
+    .award-card.featured .award-sub { color: rgba(255,255,255,0.78); position: relative; }
+    .award-card.featured .prize { color: #fff; font-size: 22px; position: relative; }
+    .award-rank { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+    .award-card h3 { font-size: 24px; margin-bottom: 6px; }
+    .award-sub { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; line-height: 1.6; }
+    .prize { font-family: var(--font-display); font-size: 18px; font-style: italic; color: var(--ink); }
+    /* ─── 統一米字號備註文字 ─── */
+    small {
+      display: block;
+      font-family: var(--font-sans);
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-top: 6px;
+    }
+    /* featured 暗色卡片內的備註（含 prize 內）維持白色 */
+    .award-card.featured small { color: rgba(255,255,255,0.55); }
+    .award-card.featured .prize small { color: rgba(255,255,255,0.65); }
+    @media (max-width: 860px) {
+      .awards-grid { grid-template-columns: 1fr 1fr; }
+      .award-card.featured { grid-column: span 2; grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .awards-grid { grid-template-columns: 1fr; }
+      .award-card.featured { grid-column: span 1; }
+    }
+    /* REGISTER */
+    .register {
+      padding: 110px 24px;
+      background: linear-gradient(180deg, rgba(252,224,232,0.35) 0%, rgba(213,230,187,0.25) 100%);
+      backdrop-filter: blur(12px) saturate(1.1);
+      position: relative; overflow: hidden;
+    }
+    .register::before {
+      content: ""; position: absolute;
+      width: 360px; height: 360px; border-radius: 50%;
+      background: var(--grass-100);
+      filter: blur(60px); opacity: 0.5;
+      top: 10%; right: -120px;
+    }
+    .register-wrap { max-width: 820px; margin: 0 auto; position: relative; }
+    .register-head { text-align: center; margin-bottom: 48px; }
+    .register-card {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: var(--radius-l);
+      padding: 48px;
+      box-shadow: var(--shadow-card);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 18px; }
+    .form-grid .full { grid-column: 1 / -1; }
+    .form-row { display: flex; flex-direction: column; gap: 8px; }
+    .form-row label { font-size: 13px; font-weight: 500; color: var(--ink); letter-spacing: 0.02em; }
+    .form-row label .req { color: var(--pink-500); margin-left: 2px; }
+    .form-row input, .form-row select, .form-row textarea {
+      font: inherit; font-size: 15px;
+      padding: 12px 14px;
+      border: 1px solid var(--silver-300);
+      border-radius: var(--radius-s);
+      background: #fff; color: var(--ink);
+      transition: border 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      outline: none;
+      border-color: var(--sky-500);
+      box-shadow: 0 0 0 4px rgba(77,139,191,0.15);
+    }
+    .form-row textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .form-row .hint { font-size: 12px; color: var(--ink-soft); }
+    /* 照片上傳區 */
+    .photo-upload-area {
+      grid-column: 1 / -1;
+      border: 2px dashed var(--silver-300);
+      border-radius: var(--radius-m);
+      padding: 28px 20px;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      background: rgba(255,255,255,0.5);
+      position: relative;
+    }
+    .photo-upload-area:hover, .photo-upload-area.drag-over {
+      border-color: var(--sky-500);
+      background: var(--sky-50);
+    }
+    .photo-upload-area input[type="file"] {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      opacity: 0; cursor: pointer;
+    }
+    .upload-icon { font-size: 32px; margin-bottom: 10px; }
+    .upload-label { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+    .upload-sub { font-size: 12px; color: var(--ink-soft); }
+    .photo-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .preview-item {
+      position: relative;
+      border-radius: var(--radius-s);
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--silver-100);
+    }
+    .preview-item img { width: 100%; height: 100%; object-fit: cover; }
+    .preview-item .remove-btn {
+      position: absolute; top: 4px; right: 4px;
+      width: 22px; height: 22px;
+      background: rgba(26,36,56,0.75);
+      color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; line-height: 1;
+      cursor: pointer; z-index: 2;
+      transition: background 0.2s;
+    }
+    .preview-item .remove-btn:hover { background: var(--pink-500); }
+    .preview-count {
+      font-size: 12px; color: var(--ink-soft);
+      margin-top: 8px; text-align: left;
+    }
+    /* 同意條款 */
+    .agree-row {
+      grid-column: 1 / -1;
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 12px 0;
+      font-size: 13px; color: var(--ink-soft); line-height: 1.6;
+    }
+    .agree-row input[type="checkbox"] {
+      width: 18px; height: 18px; flex: 0 0 auto;
+      margin-top: 2px; cursor: pointer;
+      accent-color: var(--ink);
+    }
+    .agree-row .terms-link {
+      color: var(--sky-500);
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .agree-row .terms-link:hover { color: var(--ink); }
+    .submit-row { grid-column: 1 / -1; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+    .submit-row .btn { padding: 16px 32px; font-size: 16px; }
+    .submit-row .note { font-size: 12px; color: var(--ink-soft); flex: 1; min-width: 200px; }
+    /* 送出狀態 */
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+    .submit-spinner { display: none; }
+    .submitting .submit-spinner { display: inline-block; }
+    .submitting .submit-text { display: none; }
+    @media (max-width: 640px) {
+      .register-card { padding: 32px 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    /* FAQ */
+    .faq {
+      padding: 110px 24px;
+      background: linear-gradient(180deg, rgba(213,230,187,0.25) 0%, rgba(250,250,247,0.5) 100%);
+      backdrop-filter: blur(12px) saturate(1.1);
+    }
+    .faq-wrap { max-width: 820px; margin: 0 auto; }
+    .faq-head { text-align: center; margin-bottom: 48px; }
+    .faq-list { display: grid; gap: 12px; }
+    .faq-item { background: #fff; border: 1px solid var(--silver-100); border-radius: var(--radius-m); padding: 0; overflow: hidden; transition: box-shadow 0.2s; }
+    .faq-item:hover { box-shadow: var(--shadow-soft); }
+    .faq-item summary { list-style: none; cursor: pointer; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-weight: 500; font-size: 16px; color: var(--ink); }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 22px; color: var(--ink-soft); transition: transform 0.2s; flex: 0 0 auto; line-height: 1; }
+    .faq-item[open] summary::after { content: "-"; }
+    .faq-item .answer { padding: 0 24px 22px; color: var(--ink-soft); font-size: 15px; line-height: 1.7; }
+    .faq-item .answer p + p { margin-top: 8px; }
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(180deg, rgba(250,250,247,0.5) 0%, rgba(239,235,226,0.7) 100%);
+      backdrop-filter: blur(14px) saturate(1.1);
+      padding: 80px 24px 40px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 56px; }
+    .footer-brand .logo { font-size: 14px; max-width: 100%; }
+    .footer-brand p { font-size: 14px; color: var(--ink-soft); margin-top: 14px; max-width: 360px; line-height: 1.7; }
+    .footer-col h4 { font-family: var(--font-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 14px; color: var(--ink-soft); padding: 4px 0; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--ink); }
+    .footer-bottom { max-width: var(--max); margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--ink-soft); flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 860px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    @media (max-width: 540px) { .footer-inner { grid-template-columns: 1fr; } }
+    /* ============= MODALS ============= */
+    .modal-mask {
+      position: fixed; inset: 0;
+      background: rgba(20,28,44,0.55);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 200; padding: 24px;
+    }
+    .modal-mask.open { display: flex; }
+    /* 條款 Modal */
+    .terms-modal {
+      background: #fff;
+      border-radius: var(--radius-l);
+      padding: 0;
+      max-width: 600px; width: 100%;
+      max-height: 85vh;
+      display: flex; flex-direction: column;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .terms-modal-header {
+      padding: 28px 36px 20px;
+      border-bottom: 1px solid var(--silver-100);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .terms-modal-header h3 { font-size: 22px; }
+    .terms-modal-close {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--silver-100);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--ink-soft);
+      cursor: pointer; transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .terms-modal-close:hover { background: var(--pink-100); color: var(--pink-500); }
+    .terms-modal-body {
+      padding: 28px 36px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .terms-article { margin-bottom: 24px; }
+    .terms-article h4 {
+      font-family: var(--font-sans);
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .terms-article p { font-size: 14px; color: var(--ink-soft); line-height: 1.8; }
+    .terms-modal-footer {
+      padding: 20px 36px;
+      border-top: 1px solid var(--silver-100);
+      display: flex; justify-content: flex-end;
+      flex-shrink: 0;
+    }
+    /* 送出成功 Modal */
+    .success-modal {
+      background: #fff;
+      border-radius: var(--radius-l);
+      padding: 48px 40px;
+      max-width: 480px; width: 100%;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+    .modal-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-100) 0%, var(--pink-200) 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 20px;
+    }
+    .success-modal h3 { font-size: 28px; margin-bottom: 12px; }
+    .success-modal p { color: var(--ink-soft); margin-bottom: 28px; font-size: 15px; line-height: 1.7; }
+    /* 送出失敗 Toast */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: #1a2438; color: #fff;
+      padding: 14px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      box-shadow: var(--shadow-card);
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 300;
+      pointer-events: none;
+      max-width: 90vw; text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast.error { background: #c0392b; }
+    /* 動畫進場 */
+    .reveal { transition: opacity 0.8s ease, transform 0.8s ease; }
+    .js .reveal { opacity: 0; transform: translateY(20px); }
+    .js .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <script>document.documentElement.classList.add('js');</script>
+  <div class="page-bg" aria-hidden="true"></div>
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-full">FIOLE <em>·</em> 2026 5th International Native Creation Color Awards</span>
+        <span class="logo-short">FIOLE</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">關於賽事</a>
+        <a href="#stages">賽制</a>
+        <a href="#awards">獎項</a>
+        <a href="#faq">FAQ</a>
+        <a href="#register" class="btn btn-primary">立即報名 <span class="btn-arrow">→</span></a>
+        <button class="nav-toggle" aria-label="選單" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">≡</button>
+      </div>
+    </div>
+  </nav>
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-content reveal">
+        <span class="hero-eyebrow">2026 5th International Native Creation Color Awards</span>
+        <h1>
+          <span class="row1">台灣區色彩大賞線上海選</span>
+          <span class="row2 chrome">Open Call</span>
+        </h1>
+        <p class="hero-sub">獻給每一位大膽探索屬於色彩語言的靈魂。</p>
+        <div class="hero-cta">
+          <a href="#register" class="btn btn-primary">前往報名 <span class="btn-arrow">→</span></a>
+          <a href="#stages" class="btn btn-ghost">了解賽制</a>
+        </div>
+        <dl class="hero-meta">
+          <div><dt>海選</dt><dd>即日起 — 08/09<br><small style="opacity:0.7;">線上投稿</small></dd></div>
+          <div><dt>複賽 · 09/21</dt><dd>POPOP TAIPEI 瓶蓋工廠台北製造所<br><small style="opacity:0.7;">現場實作賽</small></dd></div>
+          <div><dt>決賽 · 11/10</dt><dd>Zepp New Taipei<br><small style="opacity:0.7;">現場實作賽</small></dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+  <!-- ===================== ABOUT ===================== -->
+  <section class="about" id="about">
+    <div class="about-grid reveal">
+      <span class="section-tag">About</span>
+      <h2 class="display">讓顏色為你說話</h2>
+      <p class="pull-quote">嘿，設計師！你是不是也有過那種時刻？看著前輩們的示範，心裡卻有另一種色彩在呼喚你。翻著雜誌上的得獎作品，腦中閃過「我可以做得不一樣」。</p>
+      <p>「原生製造」專為產業內仍在原生階段的髮型設計者舉辦。三階段賽制、完全自由主題，鼓勵新人勇敢做自己；獎項涵蓋高額獎金、2027 日本 FIOLE 髮秀參訪全額贊助、品牌商品、媒體曝光。</p>
+      <p>還沒有代表作不要緊—快把握這個比賽來建立你的代表作。</p>
+      <p>我們把舞台搭好了，剩下的，就看你敢不敢上來。</p>
+    </div>
+  </section>
+  <!-- ===================== STAGES ===================== -->
+  <section class="stages" id="stages">
+    <div class="container">
+      <div class="stages-head reveal">
+        <span class="section-tag">賽制說明</span>
+        <h2 class="display">從線上海選，到國際舞台</h2>
+        <p class="lead">三階段、完全自由主題</p>
+        <p>不限色系、不限長度、不限性別。每一階段都讓你用作品說話。</p>
+        <p>參賽資格：限 30 歲（含）以下現為學生、實習師，或年資 3 年以內之新任設計師。</p>
+        <small>＊年齡限制以線上海選報名截止時間為準。</small>
+      </div>
+      <div class="stages-grid">
+        <article class="stage-card reveal">
+          <div class="stage-num">01</div>
+          <p class="stage-kind">Stage 01 · Online · 即日起 — 08/09</p>
+          <h3>海選</h3>
+          <p>線上投稿作品審查，報名人數不設上限。展現你最具代表性的色彩作品。</p>
+          <ul class="stage-list">
+            <li>線上投件，免費報名</li>
+            <li>主題不限，但須以「原生質感、創造風格」為核心概念</li>
+            <li>不接受過度修圖、AI 變造圖片，須保留髮型細節與質地呈現</li>
+            <li>照片格式：長邊 ≧ 2000px、JPG/PNG、單檔 ≦ 5MB</li>
+            <li>作品說明 100 字內</li>
+            <li>每位參賽者限報名一次；每位參賽者限投稿一位模特兒</li>
+            <li>若重複投稿將以最終提交版本為主</li>
+            <li>由台灣區評審評分，取 16 強晉級複賽</li>
+          </ul>
+        </article>
+        <article class="stage-card reveal">
+          <div class="stage-num">02</div>
+          <p class="stage-kind">Stage 02 · Live · 09/21 POPOP TAIPEI</p>
+          <h3>複賽</h3>
+          <p>複賽為線下實作賽。16 強海選晉級者自備模特兒進場，現場完成實作與 60 秒作品發表，由評審團評選出 8 強晉級決賽。</p>
+          <ul class="stage-list">
+            <li>現場將有預備造型時間</li>
+            <li>每位參賽者將有 30 分鐘呈現現場造型操作時間，評審於此時段即時觀察與評分</li>
+            <li>每位參賽者將有 60 秒進行作品介紹</li>
+            <li>由台灣區評審評分，取 8 強晉級決賽</li>
+          </ul>
+        </article>
+        <article class="stage-card reveal">
+          <div class="stage-num">03</div>
+          <p class="stage-kind">Stage 03 · Live · 11/10 ZEPP NEW TAIPEI</p>
+          <h3>決賽</h3>
+          <p>決賽為國際賽事，台灣區晉級參賽者將與海外參賽者同場競賽。</p>
+          <small>＊實際賽程與參賽人數以主辦單位最終公告為主。</small>
+          <ul class="stage-list">
+            <li>現場將有預備造型時間</li>
+            <li>每位參賽者將有 30 分鐘呈現現場造型操作時間，評審於此時段即時觀察與評分</li>
+            <li>由台灣與國際評審共同評分</li>
+            <li>當日現場頒獎</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== AWARDS ===================== -->
+  <section class="awards" id="awards">
+    <div class="awards-head reveal">
+      <span class="section-tag">Awards</span>
+      <h2 class="display">豐厚獎金 × 海外參訪 × 品牌資源</h2>
+      <p class="lead" style="margin:0 auto;">決賽前三名除高額獎金外，更獲 2027 FIOLE 日本髮秀參訪全額贊助、媒體曝光、產品贊助等資源。</p>
+    </div>
+    <div class="awards-grid">
+      <article class="award-card featured reveal">
+        <div>
+          <p class="award-rank" style="color:rgba(255,255,255,0.7);">Grand Prize</p>
+          <h3>冠軍</h3>
+          <p class="award-sub">2027 日本 FIOLE 髮秀參訪機酒全額贊助、UNIX 極致工藝專業造型工具、媒體曝光、冠軍獎盃 1 座</p>
+        </div>
+        <div class="prize">
+          NTD$50,000 ＆ JPY ￥200,000
+          <small>＊獎金以最終公告為準</small>
+        </div>
+      </article>
+      <article class="award-card reveal">
+        <p class="award-rank">Runner-up</p>
+        <h3>亞軍</h3>
+        <p class="award-sub">2027 日本 FIOLE 髮秀參訪機酒全額贊助、UNIX 極致工藝專業造型工具、媒體曝光、亞軍獎盃 1 座</p>
+        <p class="prize">NTD$20,000 ＆ JPY ￥100,000</p>
+      </article>
+      <article class="award-card reveal">
+        <p class="award-rank">Third</p>
+        <h3>季軍</h3>
+        <p class="award-sub">2027 日本 FIOLE 髮秀參訪機酒全額贊助、UNIX 極致工藝專業造型工具、媒體曝光、季軍獎盃 1 座</p>
+        <p class="prize">NTD$10,000 ＆ JPY ￥50,000</p>
+      </article>
+      <article class="award-card reveal">
+        <p class="award-rank">Honors</p>
+        <h3>優選</h3>
+        <p class="award-sub">UNIX 極致工藝專業造型工具、優選獎盃 1 座</p>
+        <p class="prize">NTD$5,000<small>＊台灣區參賽者限定</small></p>
+      </article>
+      <article class="award-card reveal">
+        <p class="award-rank">Semi-Finalists</p>
+        <h3>複賽入圍</h3>
+        <p class="award-sub">創作獎學金</p>
+        <p class="prize">NTD$5,000</p>
+        <small>＊複賽入圍獎金僅頒發予完成複賽全程賽事之參賽者。</small>
+      </article>
+    </div>
+  </section>
+  <!-- ===================== REGISTER ===================== -->
+  <section class="register" id="register">
+    <div class="register-wrap">
+      <div class="register-head reveal">
+        <span class="section-tag">Register</span>
+        <h2 class="display">立即報名</h2>
+        <p class="lead" style="margin:0 auto 0;">
+          使用個人公開 IG 帳號發布參賽作品，並 @fiole_tw 及 #第五屆原生製造國際色彩大賞，再填寫以下表單並上傳作品照片完成投稿。
+        </p>
+      </div>
+      <form class="register-card reveal" id="register-form" novalidate>
+        <div class="form-grid">
+          <div class="form-row">
+            <label>中文姓名 <span class="req">*</span></label>
+            <input type="text" name="name_zh" required placeholder="王小美" />
+          </div>
+          <div class="form-row">
+            <label>希望被稱呼的名稱</label>
+            <input type="text" name="name_en" placeholder="Mei Wang / 你慣用的暱稱" />
+          </div>
+          <div class="form-row">
+            <label>出生年月日 <span class="req">*</span></label>
+            <input type="text" name="birthday" required placeholder="2000/01/01" />
+          </div>
+          <div class="form-row">
+            <label>聯絡電話 <span class="req">*</span></label>
+            <input type="tel" name="phone" required placeholder="0912-345-678" />
+          </div>
+          <div class="form-row">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="your@email.com" />
+          </div>
+          <div class="form-row">
+            <label>Instagram 帳號</label>
+            <input type="text" name="ig" placeholder="@your_id" />
+          </div>
+          <div class="form-row">
+            <label>所屬店家／學校 <span class="req">*</span></label>
+            <input type="text" name="salon" required placeholder="例：FIOLE 台北店" />
+          </div>
+          <div class="form-row full">
+            <label>美髮年資 <span class="req">*</span></label>
+            <select name="years" required>
+              <option value="">請選擇</option>
+              <option value="≦6個月">≦ 6 個月</option>
+              <option value="6個月～1年">6 個月 ~ 1 年</option>
+              <option value="1～2年">1 ~ 2 年</option>
+              <option value="2～3年">2 ~ 3 年</option>
+            </select>
+          </div>
+          <div class="form-row full">
+            <label>創作理念／自我介紹</label>
+            <textarea name="intro" placeholder="100 字以內，分享你對色彩的想法、靈感來源、或希望被看見的理由。"></textarea>
+          </div>
+          <!-- 照片上傳 -->
+          <div class="form-row full">
+            <label>作品照片 <span class="req">*</span><span style="font-weight:400;color:var(--ink-soft);margin-left:6px;">（正面、側面、特寫至少 3 張，JPG/PNG，單檔 ≦ 5MB）</span></label>
+            <div class="photo-upload-area" id="upload-area">
+              <input type="file" id="photo-input" accept="image/jpeg,image/png,image/jpg" multiple />
+              <div class="upload-icon">✦</div>
+              <div class="upload-label">點擊或拖曳上傳作品照片</div>
+              <div class="upload-sub">JPG / PNG · 每張 ≦ 10MB · 至少上傳 3 張</div>
+            </div>
+            <div id="photo-preview" class="photo-preview-grid" style="display:none;"></div>
+            <div id="photo-count" class="preview-count"></div>
+          </div>
+          <!-- 同意條款 -->
+          <div class="agree-row">
+            <input type="checkbox" id="agree-checkbox" name="agree" />
+            <label for="agree-checkbox">
+              我已閱讀並同意《<span class="terms-link" id="open-terms" role="button" tabindex="0">參賽規則與肖像授權條款</span>》，且確認所提交作品為本人原創、無侵權問題。
+            </label>
+          </div>
+          <div class="submit-row">
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+              <span class="submit-text">送出報名 <span class="btn-arrow">→</span></span>
+              <span class="submit-spinner">⏳ 送出中…</span>
+            </button>
+            <p class="note">所有欄位資料僅供賽事主辦單位使用，不會外流或轉售。</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- ===================== FAQ ===================== -->
+  <section class="faq" id="faq">
+    <div class="faq-wrap">
+      <div class="faq-head reveal">
+        <span class="section-tag">FAQ</span>
+        <h2 class="display">常見問題</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>誰可以參加這次比賽？</summary>
+          <div class="answer"><p>凡台灣美髮產業內仍處於學生/實習師/新任設計師階段（年資 3 年以內）皆可報名，不限店家、不限學校背景。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>報名費用是多少？</summary>
+          <div class="answer"><p>完全免費報名。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>作品照片有哪些規格要求？</summary>
+          <div class="answer"><p>照片需清晰保留完整髮型與色彩細節，長邊須 ≧ 2000px，格式為 JPG 或 PNG，單檔 ≦ 5MB。嚴禁使用 AI 變造、深度合成或過度不實修圖。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>可以投稿多位模特兒的作品嗎？</summary>
+          <div class="answer"><p>每位參賽者限投稿一位模特兒。若重複投稿，將以最終提交版本為主。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>海選結果何時公布？</summary>
+          <div class="answer"><p>海選截止後（08/09），主辦單位將於官方社群公布 16 強名單。晉級者將另以 Email 個別通知。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>複賽與決賽需要自備模特兒嗎？</summary>
+          <div class="answer"><p>是的，複賽與決賽皆須自備模特兒入場，現場完成造型實作。相關細節請參考賽制說明。</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">FIOLE <em>·</em> 2026 5th International Native Creation Color Awards</div>
+        <p>2026 第五屆原生製造國際色彩大賞 × Brand Trend Showcase。用色彩定義下一個世代的美髮語言。</p>
+      </div>
+      <div class="footer-col">
+        <h4>賽事資訊</h4>
+        <a href="#about">關於賽事</a>
+        <a href="#stages">賽制說明</a>
+        <a href="#awards">獎項一覽</a>
+        <a href="#faq">常見問題</a>
+      </div>
+      <div class="footer-col">
+        <h4>重要日期</h4>
+        <a href="#">海選截止 08/09</a>
+        <a href="#">複賽 09/21</a>
+        <a href="#">決賽 11/10</a>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡我們</h4>
+        <a href="#">@fiole_tw</a>
+        <a href="#" id="footer-terms" style="cursor:pointer;">參賽規則與條款</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 FIOLE Taiwan · International Native Creation Color Awards</span>
+      <span>#第五屆原生製造國際色彩大賞</span>
+    </div>
+  </footer>
+  <!-- ===================== 條款 MODAL ===================== -->
+  <div class="modal-mask" id="terms-modal-mask" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+    <div class="terms-modal">
+      <div class="terms-modal-header">
+        <h3 id="terms-title">參賽規則與肖像授權條款</h3>
+        <button class="terms-modal-close" id="close-terms" aria-label="關閉">✕</button>
+      </div>
+      <div class="terms-modal-body">
+        <div class="terms-article">
+          <h4>第一條：作品原創承諾</h4>
+          <p>參賽者保證所提交之髮型與色彩作品確為本人親自創作之原創作品。無抄襲、無仿冒、且無任何侵害他人著作權、商標權或專利權之情事。</p>
+        </div>
+        <div class="terms-article">
+          <h4>第二條：相片與內容規範</h4>
+          <p>投稿相片必須清晰保留完整髮型與色彩細節，嚴禁使用 AI 變造、深度合成或過度不實修圖。若經主辦單位查核屬實，將取消參賽資格。</p>
+        </div>
+        <div class="terms-article">
+          <h4>第三條：肖像權與著作授權條款</h4>
+          <p>參賽者及其作品模特兒同意無償授權主辦單位（FIOLE Taiwan 原生製造活動組）於全球範圍內，不限時間、不限次數將參賽作品之文字、照片、動態影像，使用於本賽事相關之宣傳、社群媒體、網站推廣、新聞發布與品牌 Showcase 活動中。</p>
+        </div>
+        <div class="terms-article">
+          <h4>第四條：最終解釋權</h4>
+          <p>主辦單位保有本活動規則、賽程時間、現場地點及獎項細節調整與最終變更之權利。</p>
+        </div>
+      </div>
+      <div class="terms-modal-footer">
+        <button class="btn btn-primary" id="agree-from-modal">我已閱讀並同意 <span class="btn-arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+  <!-- ===================== 送出成功 MODAL ===================== -->
+  <div class="modal-mask" id="success-modal-mask" role="dialog" aria-modal="true">
+    <div class="success-modal">
+      <div class="modal-icon">🎉</div>
+      <h3>報名成功！</h3>
+      <p>謝謝你的投稿。我們已收到你的報名資料，海選結果將於 08/09 截止後公布，晉級者將另以 Email 通知。<br><br>記得在 IG 發布作品並 @fiole_tw ＆ #第五屆原生製造國際色彩大賞 喔！</p>
+      <button class="btn btn-primary" id="close-success">關閉</button>
+    </div>
+  </div>
+  <!-- Toast -->
+  <div class="toast" id="toast" role="alert"></div>
+  <script>
+    // ============ NAV scroll ============
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+    // ============ Reveal on scroll ============
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+    // ============ Terms Modal ============
+    const termsMask = document.getElementById('terms-modal-mask');
+    const agreeCheckbox = document.getElementById('agree-checkbox');
+    function openTerms() { termsMask.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeTerms() { termsMask.classList.remove('open'); document.body.style.overflow = ''; }
+    document.getElementById('open-terms').addEventListener('click', openTerms);
+    document.getElementById('open-terms').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openTerms(); });
+    document.getElementById('footer-terms').addEventListener('click', openTerms);
+    document.getElementById('close-terms').addEventListener('click', closeTerms);
+    document.getElementById('agree-from-modal').addEventListener('click', () => {
+      agreeCheckbox.checked = true;
+      closeTerms();
+      showToast('✔ 已同意條款');
+    });
+    termsMask.addEventListener('click', e => { if (e.target === termsMask) closeTerms(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (termsMask.classList.contains('open')) closeTerms();
+        if (successMask.classList.contains('open')) closeSuccess();
+      }
+    });
+    // ============ Success Modal ============
+    const successMask = document.getElementById('success-modal-mask');
+    function closeSuccess() { successMask.classList.remove('open'); document.body.style.overflow = ''; }
+    document.getElementById('close-success').addEventListener('click', closeSuccess);
+    // ============ Toast ============
+    const toastEl = document.getElementById('toast');
+    let toastTimer;
+    function showToast(msg, isError = false) {
+      clearTimeout(toastTimer);
+      toastEl.textContent = msg;
+      toastEl.className = 'toast' + (isError ? ' error' : '');
+      toastEl.classList.add('show');
+      toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3200);
+    }
+    // ============ Photo Upload ============
+    const photoInput = document.getElementById('photo-input');
+    const uploadArea = document.getElementById('upload-area');
+    const previewGrid = document.getElementById('photo-preview');
+    const photoCount = document.getElementById('photo-count');
+    let selectedFiles = [];
+    uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
+    uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
+    uploadArea.addEventListener('drop', e => {
+      e.preventDefault();
+      uploadArea.classList.remove('drag-over');
+      handleFiles([...e.dataTransfer.files]);
+    });
+    photoInput.addEventListener('change', () => {
+      handleFiles([...photoInput.files]);
+      photoInput.value = '';
+    });
+    function handleFiles(newFiles) {
+      const valid = newFiles.filter(f => {
+        if (!f.type.match(/image\/(jpeg|png)/)) { showToast('僅接受 JPG / PNG 格式', true); return false; }
+        if (f.size > 10 * 1024 * 1024) { showToast(`${f.name} 超過 10MB 限制`, true); return false; }
+        return true;
+      });
+      selectedFiles = [...selectedFiles, ...valid];
+      renderPreviews();
+    }
+    function renderPreviews() {
+      if (selectedFiles.length === 0) {
+        previewGrid.style.display = 'none';
+        photoCount.textContent = '';
+        return;
+      }
+      previewGrid.style.display = 'grid';
+      photoCount.textContent = `已選取 ${selectedFiles.length} 張照片`;
+      previewGrid.innerHTML = '';
+      selectedFiles.forEach((file, idx) => {
+        const item = document.createElement('div');
+        item.className = 'preview-item';
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.onload = () => URL.revokeObjectURL(img.src);
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'remove-btn';
+        removeBtn.textContent = '✕';
+        removeBtn.setAttribute('aria-label', '移除此照片');
+        removeBtn.addEventListener('click', () => {
+          selectedFiles.splice(idx, 1);
+          renderPreviews();
+        });
+        item.append(img, removeBtn);
+        previewGrid.appendChild(item);
+      });
+    }
+    // ============ Form Submit ============
+    const form = document.getElementById('register-form');
+    const submitBtn = document.getElementById('submit-btn');
+    // ⬇️ 請將下方 YOUR_APPS_SCRIPT_URL 替換為你的 Google Apps Script 部署網址
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcAEGDJW13u77ZuDMvWsfm2fzJMNPPraqOxloeVRGg1854m0VRU3juoScrUJUjNGbu/exec';
+    // 將單一 File 轉為 base64 字串
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64 = reader.result.split(',')[1];
+          resolve(base64);
+        };
+        reader.onerror = () => reject(new Error(`無法讀取檔案：${file.name}`));
+        reader.readAsDataURL(file);
+      });
+    }
+    // 更新送出按鈕文字
+    function setSubmitProgress(msg) {
+      const textEl = submitBtn.querySelector('.submit-text');
+      if (textEl) textEl.innerHTML = msg;
+    }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // 驗證必填
+      const nameZh   = form.name_zh.value.trim();
+      const birthday = form.birthday.value.trim();
+      const phone    = form.phone.value.trim();
+      const email    = form.email.value.trim();
+      const salon    = form.salon.value.trim();
+      const years    = form.years.value;
+      if (!nameZh)   { showToast('請填寫中文姓名', true); form.name_zh.focus(); return; }
+      if (!birthday) { showToast('請填寫出生年月日', true); form.birthday.focus(); return; }
+      if (!phone)    { showToast('請填寫聯絡電話', true); form.phone.focus(); return; }
+      if (!email || !email.includes('@')) { showToast('請填寫有效的 Email', true); form.email.focus(); return; }
+      if (!salon)    { showToast('請填寫所屬店家或學校', true); form.salon.focus(); return; }
+      if (!years)    { showToast('請選擇美髮年資', true); form.years.focus(); return; }
+      if (selectedFiles.length < 3) {
+        showToast('請至少上傳 3 張作品照片', true);
+        uploadArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      if (!agreeCheckbox.checked) { showToast('請先閱讀並同意參賽規則與肖像授權條款', true); return; }
+      // 開始送出
+      submitBtn.disabled = true;
+      submitBtn.classList.add('submitting');
+      try {
+        // Step 1：將所有照片轉為 base64
+        setSubmitProgress(`正在處理照片（0 / ${selectedFiles.length}）…`);
+        const photos = [];
+        for (let i = 0; i < selectedFiles.length; i++) {
+          const file = selectedFiles[i];
+          setSubmitProgress(`正在處理照片（${i + 1} / ${selectedFiles.length}）…`);
+          const base64 = await fileToBase64(file);
+          photos.push({
+            name: file.name,
+            mimeType: file.type,
+            data: base64
+          });
+        }
+        // Step 2：組成 JSON payload 送出
+        setSubmitProgress('送出中…');
+        const payload = {
+          timestamp: new Date().toISOString(),
+          name_zh:  nameZh,
+          name_en:  form.name_en.value.trim(),
+          birthday,
+          phone,
+          email,
+          ig:       form.ig.value.trim(),
+          salon,
+          years,
+          intro:    form.intro.value.trim(),
+          photos
+        };
+        const res = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (json.result === 'success') {
+          form.reset();
+          selectedFiles = [];
+          renderPreviews();
+          agreeCheckbox.checked = false;
+          successMask.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        } else {
+          throw new Error(json.error || '伺服器回傳失敗');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('送出時發生錯誤，請稍後再試或聯繫主辦單位。', true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('submitting');
+        setSubmitProgress('送出報名 <span class="btn-arrow">→</span>');
+      }
+    });
+  </script>
+</body>
+</html>
