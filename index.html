@@ -50,11 +50,11 @@
     /* ─── 背景漸層 ─── */
     .page-bg {
       position: fixed; inset: 0; z-index: -2;
-      background: linear-gradient(160deg,
-        #f5f0e8 0%,
-        #eae4d5 25%,
-        #dce8df 55%,
-        #e8e0d2 100%);
+      background:
+        radial-gradient(ellipse 600px 560px at 88% 8%,  rgba(230, 140, 170, 0.52) 0%, transparent 60%),
+        radial-gradient(ellipse 420px 420px at 8%  78%, rgba(240, 160, 190, 0.42) 0%, transparent 60%),
+        radial-gradient(ellipse 340px 300px at 55% 55%, rgba(210, 185, 230, 0.30) 0%, transparent 60%),
+        linear-gradient(160deg, #fdf0ec 0%, #f5e4d2 22%, #ecdde8 52%, #e8ddd0 100%);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -610,7 +610,7 @@
       <div class="hero-content reveal">
         <span class="hero-eyebrow">2026 5th International Native Creation Color Awards</span>
         <h1>
-          <span class="row1">台灣區色彩大賞線上海選</span>
+          <span class="row1">原生製造國際色彩大賞－台灣區線上海選</span>
           <span class="row2 chrome">Open Call</span>
         </h1>
         <p class="hero-sub">獻給每一位大膽探索屬於色彩語言的靈魂。</p>
@@ -756,8 +756,8 @@
             <input type="text" name="name_zh" required placeholder="王小美" />
           </div>
           <div class="form-row">
-            <label>希望被稱呼的名稱</label>
-            <input type="text" name="name_en" placeholder="Mei Wang / 你慣用的暱稱" />
+            <label>希望被稱呼的名稱 <span class="req">*</span></label>
+            <input type="text" name="name_en" required placeholder="Mei Wang / 你慣用的暱稱" />
           </div>
           <div class="form-row">
             <label>出生年月日 <span class="req">*</span></label>
@@ -772,8 +772,8 @@
             <input type="email" name="email" required placeholder="your@email.com" />
           </div>
           <div class="form-row">
-            <label>Instagram 帳號</label>
-            <input type="text" name="ig" placeholder="@your_id" />
+            <label>Instagram 帳號 <span class="req">*</span></label>
+            <input type="text" name="ig" required placeholder="@your_id" />
           </div>
           <div class="form-row">
             <label>所屬店家／學校 <span class="req">*</span></label>
@@ -790,8 +790,8 @@
             </select>
           </div>
           <div class="form-row full">
-            <label>創作理念／自我介紹</label>
-            <textarea name="intro" placeholder="100 字以內，分享你對色彩的想法、靈感來源、或希望被看見的理由。"></textarea>
+            <label>創作理念／自我介紹 <span class="req">*</span></label>
+            <textarea name="intro" required placeholder="100 字以內，分享你對色彩的想法、靈感來源、或希望被看見的理由。"></textarea>
           </div>
           <!-- 照片上傳 -->
           <div class="form-row full">
@@ -1057,17 +1057,23 @@
       e.preventDefault();
       // 驗證必填
       const nameZh   = form.name_zh.value.trim();
+      const nameEn   = form.name_en.value.trim();
       const birthday = form.birthday.value.trim();
       const phone    = form.phone.value.trim();
       const email    = form.email.value.trim();
+      const ig       = form.ig.value.trim();
       const salon    = form.salon.value.trim();
       const years    = form.years.value;
+      const intro    = form.intro.value.trim();
       if (!nameZh)   { showToast('請填寫中文姓名', true); form.name_zh.focus(); return; }
+      if (!nameEn)   { showToast('請填寫希望被稱呼的名稱', true); form.name_en.focus(); return; }
       if (!birthday) { showToast('請填寫出生年月日', true); form.birthday.focus(); return; }
       if (!phone)    { showToast('請填寫聯絡電話', true); form.phone.focus(); return; }
       if (!email || !email.includes('@')) { showToast('請填寫有效的 Email', true); form.email.focus(); return; }
+      if (!ig)       { showToast('請填寫 Instagram 帳號', true); form.ig.focus(); return; }
       if (!salon)    { showToast('請填寫所屬店家或學校', true); form.salon.focus(); return; }
       if (!years)    { showToast('請選擇美髮年資', true); form.years.focus(); return; }
+      if (!intro)    { showToast('請填寫創作理念／自我介紹', true); form.intro.focus(); return; }
       if (selectedFiles.length < 3) {
         showToast('請至少上傳 3 張作品照片', true);
         uploadArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
