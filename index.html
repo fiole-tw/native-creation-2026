@@ -336,47 +336,37 @@
     /* ─── 評分 Bar（一列分段 + 下方圖例）─── */
     .score-section {
       border-top: 1px dashed rgba(26,36,56,0.15);
-      padding-top: 16px; margin-top: 16px;
+      padding-top: 14px; margin-top: 16px;
     }
-    .score-row { display: flex; align-items: center; gap: 10px; }
     .score-pill-label {
-      flex: 0 0 auto; font-size: 11px; font-weight: 500;
-      padding: 6px 12px;
+      display: inline-block;
+      font-size: 11px; font-weight: 500;
+      padding: 5px 12px; margin-bottom: 10px;
       border: 1px solid rgba(26,36,56,0.22);
-      border-radius: 999px; color: var(--ink);
-      white-space: nowrap; line-height: 1;
+      border-radius: 999px; color: var(--ink); line-height: 1;
     }
-    .score-segs {
-      flex: 1; display: flex; border-radius: 10px; overflow: hidden; height: 62px;
+    /* 比例色塊：寬度即佔比，名稱＋百分比皆在塊內 */
+    .score-chips {
+      display: flex; gap: 3px; align-items: stretch;
     }
-    .score-seg {
-      display: flex; flex: var(--flex);
-      flex-direction: column; justify-content: center;
-      padding: 6px 9px; overflow: hidden;
-      background: var(--seg-bg);
+    .score-chip {
+      flex: var(--chip-flex);
+      background: var(--chip-bg);
+      border-radius: 7px;
+      padding: 8px 8px 7px;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-    .score-seg-name {
-      font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.82);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      line-height: 1.2; margin-bottom: 3px;
+    .score-chip-name {
+      font-size: 9.5px; font-weight: 500;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.4; word-break: break-all;
     }
-    .score-seg-pct {
-      font-size: 15px; font-weight: 700; color: #fff; line-height: 1;
+    .score-chip-pct {
+      font-size: 15px; font-weight: 700;
+      color: #fff; margin-top: 6px; line-height: 1;
     }
-    /* 海選 — sky 藍 */
-    .stage-card:nth-child(1) .score-seg:nth-child(1) { --seg-bg: #1a2e48; }
-    .stage-card:nth-child(1) .score-seg:nth-child(2) { --seg-bg: #4d8bbf; }
-    .stage-card:nth-child(1) .score-seg:nth-child(3) { --seg-bg: #8fb8d7; }
-    /* 複賽 — pink 玫 */
-    .stage-card:nth-child(2) .score-seg:nth-child(1) { --seg-bg: #c0495f; }
-    .stage-card:nth-child(2) .score-seg:nth-child(2) { --seg-bg: #d96b8a; }
-    .stage-card:nth-child(2) .score-seg:nth-child(3) { --seg-bg: #f29ab1; }
-    .stage-card:nth-child(2) .score-seg:nth-child(4) { --seg-bg: #f8c5d4; }
-    /* 決賽 — grass 綠 */
-    .stage-card:nth-child(3) .score-seg:nth-child(1) { --seg-bg: #4a6e2e; }
-    .stage-card:nth-child(3) .score-seg:nth-child(2) { --seg-bg: #6b974a; }
-    .stage-card:nth-child(3) .score-seg:nth-child(3) { --seg-bg: #9bc372; }
-    .stage-card:nth-child(3) .score-seg:nth-child(4) { --seg-bg: #c5dea0; }
+    .score-chip.lt .score-chip-name { color: rgba(255,255,255,0.88); }
+    .score-chip.lt .score-chip-pct  { color: #fff; }
     /* AWARDS */
     .awards {
       padding: 110px 24px;
@@ -869,21 +859,19 @@
             <li>由台灣區評審評分，取 16 強晉級複賽</li>
           </ul>
           <div class="score-section">
-            <div class="score-row">
-              <span class="score-pill-label">評分方式</span>
-              <div class="score-segs">
-                <div class="score-seg" style="flex:55">
-                  <span class="score-seg-name">色彩美學與創意</span>
-                  <span class="score-seg-pct">55%</span>
-                </div>
-                <div class="score-seg" style="flex:30">
-                  <span class="score-seg-name">整體造型搭配</span>
-                  <span class="score-seg-pct">30%</span>
-                </div>
-                <div class="score-seg" style="flex:15">
-                  <span class="score-seg-name">視覺呈現美學</span>
-                  <span class="score-seg-pct">15%</span>
-                </div>
+            <span class="score-pill-label">評分方式</span>
+            <div class="score-chips">
+              <div class="score-chip" style="--chip-flex:55;--chip-bg:#1a2e48">
+                <span class="score-chip-name">色彩美學與創意</span>
+                <span class="score-chip-pct">55%</span>
+              </div>
+              <div class="score-chip" style="--chip-flex:30;--chip-bg:#4d8bbf">
+                <span class="score-chip-name">整體造型搭配</span>
+                <span class="score-chip-pct">30%</span>
+              </div>
+              <div class="score-chip" style="--chip-flex:15;--chip-bg:#8fb8d7">
+                <span class="score-chip-name">視覺呈現美學</span>
+                <span class="score-chip-pct">15%</span>
               </div>
             </div>
           </div>
@@ -900,25 +888,23 @@
             <li>由台灣區評審評分，取 8 強晉級決賽</li>
           </ul>
           <div class="score-section">
-            <div class="score-row">
-              <span class="score-pill-label">評分方式</span>
-              <div class="score-segs">
-                <div class="score-seg" style="flex:40">
-                  <span class="score-seg-name">色彩美感與技術</span>
-                  <span class="score-seg-pct">40%</span>
-                </div>
-                <div class="score-seg" style="flex:25">
-                  <span class="score-seg-name">創作概念與原創性</span>
-                  <span class="score-seg-pct">25%</span>
-                </div>
-                <div class="score-seg" style="flex:25">
-                  <span class="score-seg-name">整體視覺呈現</span>
-                  <span class="score-seg-pct">25%</span>
-                </div>
-                <div class="score-seg" style="flex:10">
-                  <span class="score-seg-name">作品論述</span>
-                  <span class="score-seg-pct">10%</span>
-                </div>
+            <span class="score-pill-label">評分方式</span>
+            <div class="score-chips">
+              <div class="score-chip" style="--chip-flex:40;--chip-bg:#c0495f">
+                <span class="score-chip-name">色彩美感與技術</span>
+                <span class="score-chip-pct">40%</span>
+              </div>
+              <div class="score-chip" style="--chip-flex:25;--chip-bg:#d96b8a">
+                <span class="score-chip-name">創作概念與原創性</span>
+                <span class="score-chip-pct">25%</span>
+              </div>
+              <div class="score-chip" style="--chip-flex:25;--chip-bg:#f29ab1">
+                <span class="score-chip-name">整體視覺呈現</span>
+                <span class="score-chip-pct">25%</span>
+              </div>
+              <div class="score-chip lt" style="--chip-flex:10;--chip-bg:#d4607a">
+                <span class="score-chip-name">作品論述</span>
+                <span class="score-chip-pct">10%</span>
               </div>
             </div>
           </div>
@@ -936,25 +922,23 @@
             <li>當日現場頒獎</li>
           </ul>
           <div class="score-section">
-            <div class="score-row">
-              <span class="score-pill-label">評分方式</span>
-              <div class="score-segs">
-                <div class="score-seg" style="flex:40">
-                  <span class="score-seg-name">色彩美感與技術</span>
-                  <span class="score-seg-pct">40%</span>
-                </div>
-                <div class="score-seg" style="flex:20">
-                  <span class="score-seg-name">創作概念與原創性</span>
-                  <span class="score-seg-pct">20%</span>
-                </div>
-                <div class="score-seg" style="flex:20">
-                  <span class="score-seg-name">妝服設計整合</span>
-                  <span class="score-seg-pct">20%</span>
-                </div>
-                <div class="score-seg" style="flex:20">
-                  <span class="score-seg-name">整體視覺呈現</span>
-                  <span class="score-seg-pct">20%</span>
-                </div>
+            <span class="score-pill-label">評分方式</span>
+            <div class="score-chips">
+              <div class="score-chip" style="--chip-flex:40;--chip-bg:#4a6e2e">
+                <span class="score-chip-name">色彩美感與技術</span>
+                <span class="score-chip-pct">40%</span>
+              </div>
+              <div class="score-chip" style="--chip-flex:20;--chip-bg:#6b974a">
+                <span class="score-chip-name">創作概念與原創性</span>
+                <span class="score-chip-pct">20%</span>
+              </div>
+              <div class="score-chip" style="--chip-flex:20;--chip-bg:#9bc372">
+                <span class="score-chip-name">妝服設計整合</span>
+                <span class="score-chip-pct">20%</span>
+              </div>
+              <div class="score-chip lt" style="--chip-flex:20;--chip-bg:#7aaa50">
+                <span class="score-chip-name">整體視覺呈現</span>
+                <span class="score-chip-pct">20%</span>
               </div>
             </div>
           </div>
