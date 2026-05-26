@@ -333,6 +333,62 @@
     .stage-list li { font-size: 13px; color: var(--ink); display: flex; gap: 8px; line-height: 1.6; }
     .stage-list li::before { content: "◆"; color: var(--pink-300); flex: 0 0 auto; font-size: 10px; line-height: 1.8; }
     @media (max-width: 860px) { .stages-grid { grid-template-columns: 1fr; } }
+    /* ─── 評分 Bar（一列分段式）─── */
+    .score-section {
+      border-top: 1px dashed rgba(26,36,56,0.15);
+      padding-top: 16px; margin-top: 16px;
+    }
+    .score-row {
+      display: flex; align-items: flex-end; gap: 10px;
+    }
+    .score-pill-label {
+      flex: 0 0 auto;
+      font-size: 11px; font-weight: 500;
+      padding: 6px 12px;
+      border: 1px solid rgba(26,36,56,0.22);
+      border-radius: 999px; color: var(--ink);
+      white-space: nowrap; line-height: 1;
+      margin-bottom: 0; align-self: flex-end;
+    }
+    .score-segs {
+      flex: 1; display: flex;
+      border-radius: 10px; overflow: hidden;
+    }
+    .score-seg {
+      display: flex; flex-direction: column;
+    }
+    .score-seg-name {
+      font-size: 10px; color: var(--ink-soft);
+      padding: 0 8px 5px; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+      letter-spacing: 0.02em;
+    }
+    .score-seg-bar {
+      height: 30px;
+      display: flex; align-items: center;
+      padding: 0 8px;
+      font-size: 12px; font-weight: 700;
+      color: #fff; white-space: nowrap;
+      background: var(--seg-bg);
+    }
+    .score-seg:last-child .score-seg-bar { border-radius: 0 8px 8px 0; }
+    .score-seg:first-child .score-seg-bar { border-radius: 8px 0 0 8px; }
+    /* 海選 — sky 藍 */
+    .stage-card:nth-child(1) .score-seg:nth-child(1) { --seg-bg: #1a2e48; }
+    .stage-card:nth-child(1) .score-seg:nth-child(2) { --seg-bg: #4d8bbf; }
+    .stage-card:nth-child(1) .score-seg:nth-child(3) { --seg-bg: #8fb8d7; }
+    /* 複賽 — pink 玫 */
+    .stage-card:nth-child(2) .score-seg:nth-child(1) { --seg-bg: #c0495f; }
+    .stage-card:nth-child(2) .score-seg:nth-child(2) { --seg-bg: #d96b8a; }
+    .stage-card:nth-child(2) .score-seg:nth-child(3) { --seg-bg: #f29ab1; }
+    .stage-card:nth-child(2) .score-seg:nth-child(4) { --seg-bg: #f8c5d4; color: var(--ink); }
+    .stage-card:nth-child(2) .score-seg:nth-child(4) .score-seg-bar { color: var(--ink); }
+    /* 決賽 — grass 綠 */
+    .stage-card:nth-child(3) .score-seg:nth-child(1) { --seg-bg: #4a6e2e; }
+    .stage-card:nth-child(3) .score-seg:nth-child(2) { --seg-bg: #6b974a; }
+    .stage-card:nth-child(3) .score-seg:nth-child(3) { --seg-bg: #9bc372; }
+    .stage-card:nth-child(3) .score-seg:nth-child(4) { --seg-bg: #c5dea0; }
+    .stage-card:nth-child(3) .score-seg:nth-child(4) .score-seg-bar { color: var(--ink); }
     /* AWARDS */
     .awards {
       padding: 110px 24px;
@@ -806,8 +862,7 @@
         <h2 class="display">從線上海選，到國際舞台</h2>
         <p class="lead">三階段、完全自由主題</p>
         <p>不限色系、不限長度、不限性別。每一階段都讓你用作品說話。</p>
-        <p>參賽資格：限 30 歲（含）以下現為學生、實習師，或年資 3 年以內之新任設計師。</p>
-        <small>＊年齡限制以線上海選報名截止時間為準。</small>
+        <p>參賽資格：現為學生、實習師，或年資 3 年以內之新任設計師。</p>
       </div>
       <div class="stages-grid">
         <article class="stage-card reveal">
@@ -825,6 +880,25 @@
             <li>若重複投稿將以最終提交版本為主</li>
             <li>由台灣區評審評分，取 16 強晉級複賽</li>
           </ul>
+          <div class="score-section">
+            <div class="score-row">
+              <span class="score-pill-label">評分方式</span>
+              <div class="score-segs">
+                <div class="score-seg" style="flex:55">
+                  <span class="score-seg-name">色彩美學與創意</span>
+                  <div class="score-seg-bar">55%</div>
+                </div>
+                <div class="score-seg" style="flex:30">
+                  <span class="score-seg-name">整體造型搭配</span>
+                  <div class="score-seg-bar">30%</div>
+                </div>
+                <div class="score-seg" style="flex:15">
+                  <span class="score-seg-name">視覺呈現美學</span>
+                  <div class="score-seg-bar">15%</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
         <article class="stage-card reveal">
           <div class="stage-num">02</div>
@@ -837,6 +911,29 @@
             <li>每位參賽者將有 60 秒進行作品介紹</li>
             <li>由台灣區評審評分，取 8 強晉級決賽</li>
           </ul>
+          <div class="score-section">
+            <div class="score-row">
+              <span class="score-pill-label">評分方式</span>
+              <div class="score-segs">
+                <div class="score-seg" style="flex:40">
+                  <span class="score-seg-name">色彩美感與技術</span>
+                  <div class="score-seg-bar">40%</div>
+                </div>
+                <div class="score-seg" style="flex:25">
+                  <span class="score-seg-name">創作概念與原創性</span>
+                  <div class="score-seg-bar">25%</div>
+                </div>
+                <div class="score-seg" style="flex:25">
+                  <span class="score-seg-name">整體視覺呈現</span>
+                  <div class="score-seg-bar">25%</div>
+                </div>
+                <div class="score-seg" style="flex:10">
+                  <span class="score-seg-name">作品論述</span>
+                  <div class="score-seg-bar">10%</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
         <article class="stage-card reveal">
           <div class="stage-num">03</div>
@@ -850,6 +947,29 @@
             <li>由台灣與國際評審共同評分</li>
             <li>當日現場頒獎</li>
           </ul>
+          <div class="score-section">
+            <div class="score-row">
+              <span class="score-pill-label">評分方式</span>
+              <div class="score-segs">
+                <div class="score-seg" style="flex:40">
+                  <span class="score-seg-name">色彩美感與技術</span>
+                  <div class="score-seg-bar">40%</div>
+                </div>
+                <div class="score-seg" style="flex:20">
+                  <span class="score-seg-name">創作概念與原創性</span>
+                  <div class="score-seg-bar">20%</div>
+                </div>
+                <div class="score-seg" style="flex:20">
+                  <span class="score-seg-name">妝服設計整合</span>
+                  <div class="score-seg-bar">20%</div>
+                </div>
+                <div class="score-seg" style="flex:20">
+                  <span class="score-seg-name">整體視覺呈現</span>
+                  <div class="score-seg-bar">20%</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </div>
