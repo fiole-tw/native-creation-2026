@@ -575,6 +575,87 @@
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .toast.error { background: #c0392b; }
+    /* ─── 手機全螢幕選單 ─── */
+    .mobile-menu {
+      display: none;
+      position: fixed; inset: 0; z-index: 150;
+      background: rgba(253,240,236,0.97);
+      backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-style: italic;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--pink-500); }
+    .mobile-menu .btn {
+      font-family: var(--font-sans);
+      font-style: normal;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+    .mobile-menu-close {
+      position: absolute; top: 22px; right: 24px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(26,36,56,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--ink);
+      cursor: pointer; border: none;
+      transition: background 0.2s;
+    }
+    .mobile-menu-close:hover { background: var(--pink-100); }
+
+    /* ─── 送出中全螢幕等待畫面 ─── */
+    .loading-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 400;
+      background: rgba(253,240,236,0.92);
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .loading-overlay.show { display: flex; }
+    .loading-icon { font-size: 40px; animation: spin-slow 2s linear infinite; }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    .loading-dots { display: flex; gap: 10px; }
+    .loading-dots span {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--pink-500);
+      animation: dot-bounce 1.3s ease-in-out infinite;
+    }
+    .loading-dots span:nth-child(2) { animation-delay: 0.18s; background: var(--sky-500); }
+    .loading-dots span:nth-child(3) { animation-delay: 0.36s; background: var(--grass-500); }
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: translateY(0) scale(0.75); opacity: 0.5; }
+      40%            { transform: translateY(-16px) scale(1); opacity: 1; }
+    }
+    .loading-msg {
+      font-size: 16px; font-weight: 500; color: var(--ink);
+      letter-spacing: 0.02em; text-align: center;
+      max-width: 280px; line-height: 1.6;
+    }
+    .loading-sub { font-size: 13px; color: var(--ink-soft); }
+
+    /* ─── 手機 RWD 文字修正 ─── */
+    @media (max-width: 640px) {
+      .hero-eyebrow { font-size: 10px; letter-spacing: 0.12em; padding: 6px 12px; }
+      .hero h1 { font-size: 30px; }
+      .hero h1 .row1 { font-size: 13px; letter-spacing: 0.02em; }
+      .hero-sub { font-size: 15px; }
+      .hero-meta { grid-template-columns: 1fr; gap: 14px; }
+      .hero-meta dd { font-size: 13px; }
+    }
+
     /* 動畫進場 */
     .reveal { transition: opacity 0.8s ease, transform 0.8s ease; }
     .js .reveal { opacity: 0; transform: translateY(20px); }
@@ -587,6 +668,26 @@
 <body>
   <script>document.documentElement.classList.add('js');</script>
   <div class="page-bg" aria-hidden="true"></div>
+
+  <!-- 手機全螢幕選單 -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="導覽選單">
+    <button class="mobile-menu-close" id="close-mobile-menu" aria-label="關閉選單">✕</button>
+    <a href="#about"    class="mobile-nav-link">關於賽事</a>
+    <a href="#stages"   class="mobile-nav-link">賽制</a>
+    <a href="#awards"   class="mobile-nav-link">獎項</a>
+    <a href="#faq"      class="mobile-nav-link">FAQ</a>
+    <a href="#register" class="btn btn-primary mobile-nav-link">立即報名 →</a>
+  </div>
+
+  <!-- 送出中全螢幕等待畫面 -->
+  <div class="loading-overlay" id="loading-overlay" aria-live="polite">
+    <div class="loading-dots">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="loading-msg" id="loading-msg">正在處理中…</div>
+    <div class="loading-sub">請稍候，不要關閉此頁面</div>
+  </div>
+
   <!-- ===================== NAV ===================== -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -600,7 +701,7 @@
         <a href="#awards">獎項</a>
         <a href="#faq">FAQ</a>
         <a href="#register" class="btn btn-primary">立即報名 <span class="btn-arrow">→</span></a>
-        <button class="nav-toggle" aria-label="選單" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">≡</button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="選單">≡</button>
       </div>
     </div>
   </nav>
@@ -936,6 +1037,25 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
+
+    // ============ 手機選單 ============
+    const mobileMenu   = document.getElementById('mobile-menu');
+    const navToggle    = document.getElementById('nav-toggle');
+    const closeMobile  = document.getElementById('close-mobile-menu');
+    function openMobileMenu()  { mobileMenu.classList.add('open');    document.body.style.overflow = 'hidden'; }
+    function closeMobileMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+    navToggle.addEventListener('click', openMobileMenu);
+    closeMobile.addEventListener('click', closeMobileMenu);
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) closeMobileMenu(); });
+
+    // ============ 等待畫面 ============
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const loadingMsg     = document.getElementById('loading-msg');
+    function showLoading(msg) { loadingMsg.textContent = msg; loadingOverlay.classList.add('show'); }
+    function hideLoading()    { loadingOverlay.classList.remove('show'); }
     // ============ Reveal on scroll ============
     const reveals = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
@@ -1083,13 +1203,13 @@
       // 開始送出
       submitBtn.disabled = true;
       submitBtn.classList.add('submitting');
+      showLoading(`正在準備照片…`);
       try {
         // Step 1：將所有照片轉為 base64
-        setSubmitProgress(`正在處理照片（0 / ${selectedFiles.length}）…`);
         const photos = [];
         for (let i = 0; i < selectedFiles.length; i++) {
           const file = selectedFiles[i];
-          setSubmitProgress(`正在處理照片（${i + 1} / ${selectedFiles.length}）…`);
+          showLoading(`正在處理照片（${i + 1} / ${selectedFiles.length}）…`);
           const base64 = await fileToBase64(file);
           photos.push({
             name: file.name,
@@ -1098,7 +1218,7 @@
           });
         }
         // Step 2：組成 JSON payload 送出
-        setSubmitProgress('送出中…');
+        showLoading('上傳資料中，請稍候…');
         const payload = {
           timestamp: new Date().toISOString(),
           name_zh:  nameZh,
@@ -1132,6 +1252,7 @@
         console.error(err);
         showToast('送出時發生錯誤，請稍後再試或聯繫主辦單位。', true);
       } finally {
+        hideLoading();
         submitBtn.disabled = false;
         submitBtn.classList.remove('submitting');
         setSubmitProgress('送出報名 <span class="btn-arrow">→</span>');
