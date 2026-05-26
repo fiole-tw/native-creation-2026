@@ -333,46 +333,36 @@
     .stage-list li { font-size: 13px; color: var(--ink); display: flex; gap: 8px; line-height: 1.6; }
     .stage-list li::before { content: "◆"; color: var(--pink-300); flex: 0 0 auto; font-size: 10px; line-height: 1.8; }
     @media (max-width: 860px) { .stages-grid { grid-template-columns: 1fr; } }
-    /* ─── 評分 Bar（一列分段式）─── */
+    /* ─── 評分 Bar（一列分段 + 下方圖例）─── */
     .score-section {
       border-top: 1px dashed rgba(26,36,56,0.15);
       padding-top: 16px; margin-top: 16px;
     }
-    .score-row {
-      display: flex; align-items: flex-end; gap: 10px;
-    }
+    .score-row { display: flex; align-items: center; gap: 10px; }
     .score-pill-label {
-      flex: 0 0 auto;
-      font-size: 11px; font-weight: 500;
+      flex: 0 0 auto; font-size: 11px; font-weight: 500;
       padding: 6px 12px;
       border: 1px solid rgba(26,36,56,0.22);
       border-radius: 999px; color: var(--ink);
       white-space: nowrap; line-height: 1;
-      margin-bottom: 0; align-self: flex-end;
     }
     .score-segs {
-      flex: 1; display: flex;
-      border-radius: 10px; overflow: hidden;
+      flex: 1; display: flex; border-radius: 10px; overflow: hidden; height: 62px;
     }
     .score-seg {
-      display: flex; flex-direction: column;
-    }
-    .score-seg-name {
-      font-size: 10px; color: var(--ink-soft);
-      padding: 0 8px 5px; white-space: nowrap;
-      overflow: hidden; text-overflow: ellipsis;
-      letter-spacing: 0.02em;
-    }
-    .score-seg-bar {
-      height: 30px;
-      display: flex; align-items: center;
-      padding: 0 8px;
-      font-size: 12px; font-weight: 700;
-      color: #fff; white-space: nowrap;
+      display: flex; flex: var(--flex);
+      flex-direction: column; justify-content: center;
+      padding: 6px 9px; overflow: hidden;
       background: var(--seg-bg);
     }
-    .score-seg:last-child .score-seg-bar { border-radius: 0 8px 8px 0; }
-    .score-seg:first-child .score-seg-bar { border-radius: 8px 0 0 8px; }
+    .score-seg-name {
+      font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.82);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      line-height: 1.2; margin-bottom: 3px;
+    }
+    .score-seg-pct {
+      font-size: 15px; font-weight: 700; color: #fff; line-height: 1;
+    }
     /* 海選 — sky 藍 */
     .stage-card:nth-child(1) .score-seg:nth-child(1) { --seg-bg: #1a2e48; }
     .stage-card:nth-child(1) .score-seg:nth-child(2) { --seg-bg: #4d8bbf; }
@@ -381,14 +371,12 @@
     .stage-card:nth-child(2) .score-seg:nth-child(1) { --seg-bg: #c0495f; }
     .stage-card:nth-child(2) .score-seg:nth-child(2) { --seg-bg: #d96b8a; }
     .stage-card:nth-child(2) .score-seg:nth-child(3) { --seg-bg: #f29ab1; }
-    .stage-card:nth-child(2) .score-seg:nth-child(4) { --seg-bg: #f8c5d4; color: var(--ink); }
-    .stage-card:nth-child(2) .score-seg:nth-child(4) .score-seg-bar { color: var(--ink); }
+    .stage-card:nth-child(2) .score-seg:nth-child(4) { --seg-bg: #f8c5d4; }
     /* 決賽 — grass 綠 */
     .stage-card:nth-child(3) .score-seg:nth-child(1) { --seg-bg: #4a6e2e; }
     .stage-card:nth-child(3) .score-seg:nth-child(2) { --seg-bg: #6b974a; }
     .stage-card:nth-child(3) .score-seg:nth-child(3) { --seg-bg: #9bc372; }
     .stage-card:nth-child(3) .score-seg:nth-child(4) { --seg-bg: #c5dea0; }
-    .stage-card:nth-child(3) .score-seg:nth-child(4) .score-seg-bar { color: var(--ink); }
     /* AWARDS */
     .awards {
       padding: 110px 24px;
@@ -886,15 +874,15 @@
               <div class="score-segs">
                 <div class="score-seg" style="flex:55">
                   <span class="score-seg-name">色彩美學與創意</span>
-                  <div class="score-seg-bar">55%</div>
+                  <span class="score-seg-pct">55%</span>
                 </div>
                 <div class="score-seg" style="flex:30">
                   <span class="score-seg-name">整體造型搭配</span>
-                  <div class="score-seg-bar">30%</div>
+                  <span class="score-seg-pct">30%</span>
                 </div>
                 <div class="score-seg" style="flex:15">
                   <span class="score-seg-name">視覺呈現美學</span>
-                  <div class="score-seg-bar">15%</div>
+                  <span class="score-seg-pct">15%</span>
                 </div>
               </div>
             </div>
@@ -917,19 +905,19 @@
               <div class="score-segs">
                 <div class="score-seg" style="flex:40">
                   <span class="score-seg-name">色彩美感與技術</span>
-                  <div class="score-seg-bar">40%</div>
+                  <span class="score-seg-pct">40%</span>
                 </div>
                 <div class="score-seg" style="flex:25">
                   <span class="score-seg-name">創作概念與原創性</span>
-                  <div class="score-seg-bar">25%</div>
+                  <span class="score-seg-pct">25%</span>
                 </div>
                 <div class="score-seg" style="flex:25">
                   <span class="score-seg-name">整體視覺呈現</span>
-                  <div class="score-seg-bar">25%</div>
+                  <span class="score-seg-pct">25%</span>
                 </div>
                 <div class="score-seg" style="flex:10">
                   <span class="score-seg-name">作品論述</span>
-                  <div class="score-seg-bar">10%</div>
+                  <span class="score-seg-pct">10%</span>
                 </div>
               </div>
             </div>
@@ -953,19 +941,19 @@
               <div class="score-segs">
                 <div class="score-seg" style="flex:40">
                   <span class="score-seg-name">色彩美感與技術</span>
-                  <div class="score-seg-bar">40%</div>
+                  <span class="score-seg-pct">40%</span>
                 </div>
                 <div class="score-seg" style="flex:20">
                   <span class="score-seg-name">創作概念與原創性</span>
-                  <div class="score-seg-bar">20%</div>
+                  <span class="score-seg-pct">20%</span>
                 </div>
                 <div class="score-seg" style="flex:20">
                   <span class="score-seg-name">妝服設計整合</span>
-                  <div class="score-seg-bar">20%</div>
+                  <span class="score-seg-pct">20%</span>
                 </div>
                 <div class="score-seg" style="flex:20">
                   <span class="score-seg-name">整體視覺呈現</span>
-                  <div class="score-seg-bar">20%</div>
+                  <span class="score-seg-pct">20%</span>
                 </div>
               </div>
             </div>
