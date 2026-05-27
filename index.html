@@ -222,7 +222,7 @@
     /* HERO */
     .hero {
       min-height: 100vh;
-      padding: 140px 24px 80px;
+      padding: 180px 24px 120px;
       position: relative;
       overflow: hidden;
     }
@@ -241,8 +241,9 @@
     @keyframes float1 { 0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)} }
     @keyframes float2 { 0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(20px) translateX(15px)} }
     .hero-inner {
-      max-width: 780px; margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       position: relative; z-index: 2;
+      text-align: center;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -261,11 +262,11 @@
       box-shadow: 0 0 0 4px var(--pink-100);
       flex-shrink: 0;
     }
-    .hero h1 { font-size: clamp(36px, 5.5vw, 72px); line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.02em; }
-    .hero h1 .row1 { display: block; font-family: var(--font-sans); font-weight: 700; font-size: 0.45em; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+    .hero h1 { font-size: clamp(56px, 10vw, 128px); line-height: 1.0; margin-bottom: 20px; letter-spacing: -0.03em; }
+    .hero h1 .row1 { display: block; font-family: var(--font-sans); font-weight: 600; font-size: 0.22em; letter-spacing: 0.10em; color: var(--ink-soft); margin-bottom: 18px; line-height: 1.4; text-transform: uppercase; }
     .hero h1 .row2 { display: block; font-style: italic; font-weight: 500; }
-    .hero-sub { font-size: clamp(16px, 1.4vw, 19px); color: var(--ink-soft); margin: 22px 0 32px; max-width: 480px; }
-    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-sub { font-size: clamp(16px, 1.4vw, 19px); color: var(--ink-soft); margin: 28px auto 40px; max-width: 520px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
     .hero-meta {
       margin-top: 36px;
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -277,7 +278,7 @@
     .hero-meta dt { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 6px; }
     .hero-meta dd { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
     @media (max-width: 860px) {
-      .hero { padding-top: 110px; min-height: 0; }
+      .hero { padding-top: 130px; padding-bottom: 80px; min-height: 0; }
       .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-meta { grid-template-columns: 1fr 1fr; gap: 16px; }
     }
@@ -742,8 +743,8 @@
     /* ─── 手機 RWD 文字修正 ─── */
     @media (max-width: 640px) {
       .hero-eyebrow { font-size: 10px; letter-spacing: 0.12em; padding: 6px 12px; }
-      .hero h1 { font-size: 30px; }
-      .hero h1 .row1 { font-size: 13px; letter-spacing: 0.02em; }
+      .hero h1 { font-size: 48px; }
+      .hero h1 .row1 { font-size: 11px; letter-spacing: 0.08em; }
       .hero-sub { font-size: 15px; }
       .hero-meta { grid-template-columns: 1fr; gap: 14px; }
       .hero-meta dd { font-size: 13px; }
@@ -755,6 +756,199 @@
     .js .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
       .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── Hero 獎項橫幅（Ink + Crimson 沙龍風） ─── */
+    .hero-prize-wrap {
+      position: relative;
+      margin: 0 auto 40px;
+      max-width: 100%;
+    }
+    /* 卡片左側滑入 */
+    .hero-prize-wrap.card-hidden .hero-prize-card {
+      opacity: 0; transform: translateX(-52px);
+    }
+    .hero-prize-wrap.card-reveal .hero-prize-card {
+      animation: card-slide-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes card-slide-in {
+      from { opacity: 0; transform: translateX(-52px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .hero-prize-card {
+      display: flex;
+      flex-direction: column;
+      background: #111827;
+      border-radius: var(--radius-m);
+      overflow: hidden;
+      border: 0.5px solid rgba(255,255,255,0.07);
+    }
+    .hero-prize-header {
+      background: #c0495f;
+      padding: 9px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-prize-header-main {
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #fff; font-family: var(--font-sans); font-weight: 600; line-height: 1;
+    }
+    .hero-prize-header-divider {
+      width: 1px; height: 12px; background: rgba(255,255,255,0.35); flex-shrink: 0;
+    }
+    .hero-prize-header-sub {
+      font-size: 12px; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.85); font-family: var(--font-sans); line-height: 1;
+    }
+    .hero-prize-card-inner {
+      display: flex;
+    }
+    .hero-prize-card-accent {
+      width: 4px;
+      background: #c0495f;
+      flex-shrink: 0;
+      opacity: 0.55;
+    }
+    .hero-prize-card-body {
+      padding: 16px 22px 18px;
+      flex: 1;
+    }
+    .hero-prize-items {
+      display: flex; align-items: stretch;
+    }
+    .hero-prize-item {
+      flex: 1; display: flex; flex-direction: column; gap: 7px;
+      padding: 0 18px; justify-content: center;
+    }
+    .hero-prize-item:first-child { padding-left: 0; }
+    .hero-prize-item + .hero-prize-item {
+      border-left: 0.5px solid rgba(255,255,255,0.10);
+    }
+    .hero-prize-item-label {
+      font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65); line-height: 1;
+      font-family: var(--font-sans);
+    }
+    .hero-prize-item-text {
+      font-family: var(--font-display);
+      font-size: clamp(15px, 1.9vw, 20px);
+      font-style: italic; font-weight: 400;
+      color: #ede8e0; line-height: 1.35;
+    }
+    .hero-prize-hl { color: #f29ab1; }
+    .hero-prize-item-note {
+      font-size: 9px; color: rgba(255,255,255,0.50);
+      letter-spacing: 0.05em; font-family: var(--font-sans);
+    }
+    @media (max-width: 480px) {
+      .hero-prize-items { flex-direction: column; gap: 14px; }
+      .hero-prize-item { padding: 0; }
+      .hero-prize-item + .hero-prize-item {
+        border-left: none;
+        border-top: 0.5px solid rgba(255,255,255,0.10);
+        padding-top: 14px;
+      }
+    }
+
+    /* ─── 倒數計時器 ─── */
+    .hero-countdown-wrap {
+      margin-top: 40px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .hero-countdown-eyebrow {
+      font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 12px;
+    }
+    .hero-countdown {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    }
+    .countdown-unit {
+      background: rgba(255,255,255,0.68);
+      backdrop-filter: blur(14px) saturate(1.4);
+      -webkit-backdrop-filter: blur(14px) saturate(1.4);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 14px;
+      padding: 12px 18px;
+      text-align: center; min-width: 66px;
+      box-shadow: 0 4px 16px rgba(58,75,110,0.09), inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .countdown-num {
+      font-family: var(--font-display);
+      font-size: 30px; font-weight: 500; color: var(--ink);
+      line-height: 1; display: block; letter-spacing: -0.02em;
+    }
+    .countdown-lbl {
+      font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-soft); margin-top: 5px; display: block;
+    }
+    .countdown-expired {
+      font-size: 14px; color: var(--ink-soft); font-style: italic;
+    }
+
+    /* ─── 中途 CTA ─── */
+    .mid-cta {
+      text-align: center;
+      padding: 72px 24px;
+      background: linear-gradient(160deg, rgba(26,36,56,0.94) 0%, rgba(42,55,80,0.97) 100%);
+      position: relative; overflow: hidden;
+    }
+    .mid-cta::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 480px 320px at 15% 50%, rgba(217,107,138,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 360px 280px at 85% 50%, rgba(77,139,191,0.15) 0%, transparent 65%);
+    }
+    .mid-cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .mid-cta h2 {
+      font-size: clamp(28px, 3.5vw, 46px);
+      color: #fff; margin-bottom: 12px;
+    }
+    .mid-cta p { color: rgba(255,255,255,0.65); font-size: 16px; margin-bottom: 32px; }
+    .btn-primary-lg {
+      padding: 17px 42px; font-size: 16px; font-weight: 600;
+      background: linear-gradient(180deg, #fff 0%, #e8edf5 100%);
+      color: var(--ink); border-radius: var(--radius-pill);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary-lg:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,0.35); }
+    .mid-cta-note {
+      margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.38);
+    }
+
+    /* ─── IG 投稿步驟 ─── */
+    .ig-steps {
+      display: flex; flex-direction: column; gap: 10px;
+      margin: 28px auto 0; max-width: 580px; text-align: left;
+    }
+    .ig-step {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.88);
+      border-radius: var(--radius-m);
+      padding: 14px 20px;
+      box-shadow: 0 2px 10px rgba(58,75,110,0.06);
+    }
+    .ig-step-num {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 26px; line-height: 1;
+      color: var(--pink-500); flex-shrink: 0; width: 30px;
+      text-align: center;
+    }
+    .ig-step-body strong {
+      display: block; font-size: 14px; font-weight: 600;
+      color: var(--ink); margin-bottom: 2px;
+    }
+    .ig-step-body span { font-size: 13px; color: var(--ink-soft); }
+    .ig-step-body a { color: var(--pink-500); }
+    @media (max-width: 640px) {
+      .hero-countdown { gap: 8px; }
+      .countdown-unit { padding: 10px 12px; min-width: 56px; }
+      .countdown-num { font-size: 24px; }
+      .mid-cta { padding: 56px 20px; }
     }
   </style>
 </head>
@@ -806,13 +1000,46 @@
       <div class="hero-content reveal">
         <span class="hero-eyebrow">2026 5th International Native Creation Color Awards</span>
         <h1>
-          <span class="row1">原生製造國際色彩大賞－台灣區線上海選</span>
+          <span class="row1">第五屆原生製造國際色彩大賞－台灣區線上海選</span>
           <span class="row2 chrome">Open Call</span>
         </h1>
         <p class="hero-sub">獻給每一位大膽探索屬於色彩語言的靈魂。</p>
+        <div class="hero-prize-wrap" id="hero-prize-wrap">
+          <div class="hero-prize-card">
+            <div class="hero-prize-header">
+              <span class="hero-prize-header-main">Grand Prize</span>
+              <div class="hero-prize-header-divider"></div>
+              <span class="hero-prize-header-sub">冠軍獎項</span>
+            </div>
+            <div class="hero-prize-card-inner">
+              <div class="hero-prize-card-accent"></div>
+              <div class="hero-prize-card-body">
+                <div class="hero-prize-items">
+                  <div class="hero-prize-item">
+                    <span class="hero-prize-item-label">Experience</span>
+                    <p class="hero-prize-item-text"><span class="hero-prize-hl">2027 日本 FIOLE 髮秀<br>參訪機酒全額贊助</span></p>
+                  </div>
+                  <div class="hero-prize-item">
+                    <span class="hero-prize-item-label">Prize Money</span>
+                    <p class="hero-prize-item-text"><span class="hero-prize-hl">NT$ 50,000 &amp; ¥ 200,000</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="hero-cta">
           <a href="#register" class="btn btn-primary">前往報名 <span class="btn-arrow">→</span></a>
           <a href="#stages" class="btn btn-ghost">了解賽制</a>
+        </div>
+        <div class="hero-countdown-wrap">
+          <p class="hero-countdown-eyebrow">距離海選截止</p>
+          <div class="hero-countdown" id="hero-countdown" aria-label="距海選截止倒數">
+            <div class="countdown-unit"><span class="countdown-num" id="cd-days">--</span><span class="countdown-lbl">天</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-lbl">時</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-lbl">分</span></div>
+            <div class="countdown-unit"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-lbl">秒</span></div>
+          </div>
         </div>
         <dl class="hero-meta">
           <div><dt>海選</dt><dd>即日起 — 08/09<br><small style="opacity:0.7;">線上投稿</small></dd></div>
@@ -994,15 +1221,38 @@
     </div>
     <p class="awards-note reveal">＊日幣獎金由日本 FIOLE 總公司特別提供</p>
   </section>
+  <!-- ===================== MID CTA ===================== -->
+  <section class="mid-cta">
+    <div class="mid-cta-inner reveal">
+      <h2 class="display">你的作品，值得被看見！</h2>
+      <p>從這裡開始你的第一步。</p>
+      <a href="#register" class="btn-primary-lg">立即報名 <span class="btn-arrow">→</span></a>
+      <p class="mid-cta-note">截止日期 08/09 · 免報名費 · 火熱徵件中</p>
+    </div>
+  </section>
   <!-- ===================== REGISTER ===================== -->
   <section class="register" id="register">
     <div class="register-wrap">
       <div class="register-head reveal">
         <span class="section-tag">Register</span>
         <h2 class="display">立即報名</h2>
-        <p class="lead" style="margin:0 auto 0;">
-          使用個人公開 IG 帳號發布參賽作品，並 @fiole_tw 及 #第五屆原生製造國際色彩大賞，再填寫以下表單並上傳作品照片完成投稿。
-        </p>
+        <p class="lead" style="margin:0 auto 12px;">完成以下三個步驟即完成投稿：</p>
+        <div class="ig-steps">
+          <div class="ig-step">
+            <span class="ig-step-num">1</span>
+            <div class="ig-step-body">
+              <strong>在 IG 發布參賽作品</strong>
+              <span>使用個人公開帳號，標記 <a href="https://www.instagram.com/fiole.tw/" target="_blank" rel="noopener">@fiole_tw</a>，並加上 #第五屆原生製造國際色彩大賞</span>
+            </div>
+          </div>
+          <div class="ig-step">
+            <span class="ig-step-num">2</span>
+            <div class="ig-step-body">
+              <strong>填寫下方表單並上傳作品照片</strong>
+              <span>填妥個人資料與作品說明，完成投稿</span>
+            </div>
+          </div>
+        </div>
       </div>
       <form class="register-card reveal" id="register-form" novalidate>
         <div class="form-grid">
@@ -1186,6 +1436,31 @@
   <!-- Toast -->
   <div class="toast" id="toast" role="alert"></div>
   <script>
+    // ============ 倒數計時器 ============
+    (function() {
+      const deadline = new Date('2026-08-09T23:59:59+08:00');
+      const el = document.getElementById('hero-countdown');
+      if (!el) return;
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function tick() {
+        const diff = deadline - new Date();
+        if (diff <= 0) {
+          el.innerHTML = '<span class="countdown-expired">海選已截止</span>';
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-days').textContent  = pad(d);
+        document.getElementById('cd-hours').textContent = pad(h);
+        document.getElementById('cd-mins').textContent  = pad(m);
+        document.getElementById('cd-secs').textContent  = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
     // ============ NAV scroll ============
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -1216,6 +1491,16 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     reveals.forEach(el => io.observe(el));
+    // ============ 獎項卡片左側滑入 ============
+    (function() {
+      var wrap = document.getElementById('hero-prize-wrap');
+      if (!wrap) return;
+      wrap.classList.add('card-hidden');
+      setTimeout(function() {
+        wrap.classList.remove('card-hidden');
+        wrap.classList.add('card-reveal');
+      }, 700);
+    })();
     // ============ Terms Modal ============
     const termsMask = document.getElementById('terms-modal-mask');
     const agreeCheckbox = document.getElementById('agree-checkbox');
