@@ -1077,8 +1077,16 @@
       color: rgba(255,255,255,0.70); text-align: right; white-space: nowrap;
     }
     @media (max-width: 640px) {
-      .sched-row { grid-template-columns: 36px 1fr; grid-template-rows: auto auto; gap: 8px 12px; }
-      .sched-outcome { grid-column: 2; text-align: left; white-space: normal; }
+      .sched-row {
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 4px 12px;
+        padding: 16px 20px;
+      }
+      .sched-badge { grid-column: 1; grid-row: 1; align-self: center; width: 32px; height: 32px; font-size: 13px; }
+      .sched-name  { grid-column: 2; grid-row: 1; align-self: center; font-size: 18px; }
+      .sched-info  { grid-column: 1 / -1; grid-row: 2; padding-left: 44px; font-size: 13px; }
+      .sched-outcome { grid-column: 1 / -1; grid-row: 3; padding-left: 44px; text-align: left; white-space: normal; font-size: 12px; }
       .sched-bar { padding: 8px 16px 10px; overflow-x: auto; }
       .sched-bar-segs { min-width: 480px; }
       .sched-seg { font-size: 11px; padding: 8px 8px 6px; }
