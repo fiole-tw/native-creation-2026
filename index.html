@@ -950,6 +950,174 @@
       .countdown-num { font-size: 24px; }
       .mid-cta { padding: 56px 20px; }
     }
+
+    /* ─── 賽程時間軸 ─── */
+    .sched-table {
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(16px);
+      border: 0.5px solid rgba(26,36,56,0.12);
+      border-radius: var(--radius-m);
+      overflow: hidden;
+      margin: 0 0 48px;
+    }
+    .sched-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 28px;
+      border-bottom: 0.5px solid rgba(26,36,56,0.10);
+    }
+    .sched-header-l {
+      font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: 0.04em;
+    }
+    .sched-header-r {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .sched-row {
+      display: grid;
+      grid-template-columns: 48px 72px 1fr auto;
+      align-items: start;
+      gap: 0 20px;
+      padding: 20px 28px;
+      border-bottom: 0.5px solid rgba(26,36,56,0.07);
+    }
+    .sched-row:last-of-type { border-bottom: none; }
+    .sched-badge {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--ink); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 600; flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .sched-row:nth-child(2) .sched-badge { background: var(--pink-500); }
+    .sched-row:nth-child(3) .sched-badge { background: var(--sky-500); }
+    .sched-row:nth-child(4) .sched-badge { background: var(--grass-500); }
+    .sched-name {
+      font-size: 22px; font-family: var(--font-display); font-style: italic;
+      color: var(--ink); line-height: 1.2; padding-top: 4px;
+    }
+    .sched-info { font-size: 13px; color: var(--ink); line-height: 1.7; }
+    .sched-venue { display: block; color: var(--ink-soft); font-size: 12px; }
+    .sched-note { display: block; font-size: 11px; color: var(--ink-soft); margin-top: 6px; line-height: 1.6; }
+    .sched-outcome {
+      font-size: 12px; color: var(--ink-soft); text-align: right;
+      line-height: 1.6; padding-top: 6px; white-space: nowrap;
+    }
+    .sched-outcome small { display: block; font-size: 11px; }
+    /* Timeline bar */
+    .sched-bar {
+      background: var(--ink);
+      padding: 0 28px 0;
+    }
+    .sched-bar-dates {
+      display: flex; justify-content: space-between;
+      padding: 10px 0 8px;
+      font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.06em;
+      border-bottom: 0.5px solid rgba(255,255,255,0.12);
+    }
+    .sched-bar-segs {
+      display: flex; gap: 3px; padding: 8px 0;
+    }
+    .sched-seg {
+      flex: 1; padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 12px; font-weight: 500; color: #fff;
+      text-align: center; line-height: 1.3;
+    }
+    .sched-seg-h { background: #c0495f; flex: 3; }
+    .sched-seg-f { background: rgba(255,255,255,0.18); flex: 1; }
+    .sched-seg-j { background: rgba(255,255,255,0.10); flex: 1; }
+    @media (max-width: 640px) {
+      .sched-row { grid-template-columns: 36px 1fr; grid-template-rows: auto auto; gap: 8px 12px; }
+      .sched-outcome { grid-column: 2; text-align: left; white-space: normal; }
+      .sched-bar-dates { font-size: 10px; }
+      .sched-seg { font-size: 11px; padding: 7px 8px; }
+    }
+
+    /* ─── 評審陣容 ─── */
+    .judges { padding: 96px 0; }
+    .judges-head { text-align: center; margin-bottom: 56px; }
+    .judges-group { margin-bottom: 52px; }
+    .judges-group-hd {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px; padding-bottom: 14px;
+      border-bottom: 0.5px solid rgba(26,36,56,0.15);
+    }
+    .jg-flag { font-size: 18px; line-height: 1; }
+    .jg-title { font-size: 16px; font-weight: 600; color: var(--ink); }
+    .jg-scope {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-soft); margin-left: auto;
+    }
+    .judges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .judge-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(12px);
+      border: 0.5px solid rgba(26,36,56,0.10);
+      border-radius: var(--radius-m);
+      padding: 22px 16px 18px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .judge-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); }
+    .judge-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      object-fit: cover;
+      display: block; margin: 0 auto 14px;
+      border: 2.5px solid rgba(255,255,255,0.9);
+      box-shadow: 0 2px 12px rgba(26,36,56,0.15);
+      background: var(--silver-100);
+    }
+    .judge-name {
+      font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px;
+    }
+    .judge-salon {
+      font-size: 11px; color: var(--ink-soft); margin-bottom: 8px; letter-spacing: 0.03em;
+    }
+    .judge-bio {
+      font-size: 11px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 14px;
+    }
+    .judge-ig {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 0.5px solid rgba(26,36,56,0.18);
+      color: var(--ink-soft); font-size: 16px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .judge-ig:hover { background: #c0495f; color: #fff; border-color: #c0495f; }
+
+    /* ─── FAQ 聯絡 CTA ─── */
+    .faq-contact {
+      margin-top: 40px; padding: 28px 32px;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(12px);
+      border: 0.5px solid rgba(26,36,56,0.12);
+      border-radius: var(--radius-m);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .faq-contact-text p:first-child {
+      font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 4px;
+    }
+    .faq-contact-text p:last-child {
+      font-size: 13px; color: var(--ink-soft);
+    }
+    .faq-contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px;
+      background: var(--ink); color: #fff;
+      border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 500;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+    }
+    .faq-contact-btn:hover { background: var(--pink-500); }
+    @media (max-width: 600px) {
+      .faq-contact { flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
 <body>
@@ -962,6 +1130,7 @@
     <a href="#about"    class="mobile-nav-link">關於賽事</a>
     <a href="#stages"   class="mobile-nav-link">賽制</a>
     <a href="#awards"   class="mobile-nav-link">獎項</a>
+    <a href="#judges"   class="mobile-nav-link">評審</a>
     <a href="#faq"      class="mobile-nav-link">FAQ</a>
     <a href="#register" class="btn btn-primary mobile-nav-link">立即報名 →</a>
   </div>
@@ -988,6 +1157,7 @@
         <a href="#about">關於賽事</a>
         <a href="#stages">賽制</a>
         <a href="#awards">獎項</a>
+        <a href="#judges">評審</a>
         <a href="#faq">FAQ</a>
         <a href="#register" class="btn btn-primary nav-register-btn">立即報名 <span class="btn-arrow">→</span></a>
         <button class="nav-toggle" id="nav-toggle" aria-label="選單">≡</button>
@@ -1066,26 +1236,66 @@
       <div class="stages-head reveal">
         <span class="section-tag">賽制說明</span>
         <h2 class="display">從線上海選，到國際舞台</h2>
-        <p class="lead">三階段、完全自由主題</p>
-        <p>不限色系、不限長度、不限性別。每一階段都讓你用作品說話。</p>
-        <p>參賽資格：現為學生、實習師，或年資 3 年以內之新任設計師。</p>
+        <p class="lead">三階段、完全自由主題。不限色系、不限長度、不限性別。</p>
+        <p style="margin-top:8px;color:var(--ink-soft);">參賽資格：現為學生、實習師，或年資 3 年以內之新任設計師。</p>
       </div>
+
+      <!-- 時間軸 -->
+      <div class="sched-table reveal">
+        <div class="sched-header">
+          <span class="sched-header-l">大賽期程</span>
+          <span class="sched-header-r">Competition Schedule</span>
+        </div>
+        <div class="sched-row">
+          <div class="sched-badge">1</div>
+          <div class="sched-name">海選</div>
+          <div class="sched-info">
+            即日起 — 2026/8/9（日）23:59 止
+            <span class="sched-venue">線上作品投稿</span>
+          </div>
+          <div class="sched-outcome">取 16 強晉級複賽<br><small>入圍者將於 @fiole.tw IG 公告</small></div>
+        </div>
+        <div class="sched-row">
+          <div class="sched-badge">2</div>
+          <div class="sched-name">複賽</div>
+          <div class="sched-info">
+            9/21（一）
+            <span class="sched-venue">POPOP TAIPEI 瓶蓋工廠台北製造所</span>
+          </div>
+          <div class="sched-outcome">取 8 強晉級決賽</div>
+        </div>
+        <div class="sched-row">
+          <div class="sched-badge">3</div>
+          <div class="sched-name">決賽</div>
+          <div class="sched-info">
+            11/10（二）
+            <span class="sched-venue">Zepp New Taipei</span>
+            <span class="sched-note">決賽為國際賽事，台灣區晉級參賽者與國際參賽者同場競賽。<br>＊實際賽程與參賽人數以主辦單位最終公告為主。</span>
+          </div>
+          <div class="sched-outcome">當日現場頒獎</div>
+        </div>
+        <div class="sched-bar">
+          <div class="sched-bar-dates">
+            <span>即日起</span>
+            <span>8/9</span>
+            <span>9/21</span>
+            <span>11/10</span>
+          </div>
+          <div class="sched-bar-segs">
+            <div class="sched-seg sched-seg-h">海選｜線上作品集投件</div>
+            <div class="sched-seg sched-seg-f">複賽</div>
+            <div class="sched-seg sched-seg-j">決賽</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 各關卡評分方式 -->
       <div class="stages-grid">
         <article class="stage-card reveal">
           <div class="stage-num">01</div>
           <p class="stage-kind">Stage 01 · Online · 即日起 — 08/09</p>
           <h3>海選</h3>
           <p>線上投稿作品審查，報名人數不設上限。展現你最具代表性的色彩作品。</p>
-          <ul class="stage-list">
-            <li>線上投件，免費報名</li>
-            <li>主題不限，但須以「原生質感、創造風格」為核心概念</li>
-            <li>不接受過度修圖、AI 變造圖片，須保留髮型細節與質地呈現</li>
-            <li>照片格式：長邊 ≧ 2000px、JPG/PNG、單檔 ≦ 5MB</li>
-            <li>作品說明 100 字內</li>
-            <li>每位參賽者限報名一次；每位參賽者限投稿一位模特兒</li>
-            <li>若重複投稿將以最終提交版本為主</li>
-            <li>由台灣區評審評分，取 16 強晉級複賽</li>
-          </ul>
           <div class="score-section">
             <span class="score-pill-label">評分方式</span>
             <div class="score-chips">
@@ -1108,13 +1318,7 @@
           <div class="stage-num">02</div>
           <p class="stage-kind">Stage 02 · Live · 09/21 POPOP TAIPEI</p>
           <h3>複賽</h3>
-          <p>複賽為線下實作賽。16 強海選晉級者自備模特兒進場，現場完成實作與 60 秒作品發表，由評審團評選出 8 強晉級決賽。</p>
-          <ul class="stage-list">
-            <li>現場將有預備造型時間</li>
-            <li>每位參賽者將有 30 分鐘呈現現場造型操作時間，評審於此時段即時觀察與評分</li>
-            <li>每位參賽者將有 60 秒進行作品介紹</li>
-            <li>由台灣區評審評分，取 8 強晉級決賽</li>
-          </ul>
+          <p>線下實作賽。16 強入圍者自備模特兒，現場完成實作與 60 秒發表。</p>
           <div class="score-section">
             <span class="score-pill-label">評分方式</span>
             <div class="score-chips">
@@ -1141,14 +1345,7 @@
           <div class="stage-num">03</div>
           <p class="stage-kind">Stage 03 · Live · 11/10 ZEPP NEW TAIPEI</p>
           <h3>決賽</h3>
-          <p>決賽為國際賽事，台灣區晉級參賽者將與海外參賽者同場競賽。</p>
-          <small>＊實際賽程與參賽人數以主辦單位最終公告為主。</small>
-          <ul class="stage-list">
-            <li>現場將有預備造型時間</li>
-            <li>每位參賽者將有 30 分鐘呈現現場造型操作時間，評審於此時段即時觀察與評分</li>
-            <li>由台灣與國際評審共同評分</li>
-            <li>當日現場頒獎</li>
-          </ul>
+          <p>國際賽事，台灣區晉級者與海外參賽者同場競賽，當日現場頒獎。</p>
           <div class="score-section">
             <span class="score-pill-label">評分方式</span>
             <div class="score-chips">
@@ -1220,6 +1417,108 @@
       </article>
     </div>
     <p class="awards-note reveal">＊日幣獎金由日本 FIOLE 總公司特別提供</p>
+  </section>
+  <!-- ===================== JUDGES ===================== -->
+  <section class="judges" id="judges">
+    <div class="container">
+      <div class="judges-head reveal">
+        <span class="section-tag">Judging Panel</span>
+        <h2 class="display">評審陣容</h2>
+        <p class="lead" style="margin:0 auto;">來自台灣、日本、韓國的頂尖髮藝設計師，以最高標準評選每一件作品。</p>
+      </div>
+
+      <!-- 台灣評審 -->
+      <div class="judges-group reveal">
+        <div class="judges-group-hd">
+          <span class="jg-flag">🇹🇼</span>
+          <span class="jg-title">台灣評審</span>
+          <span class="jg-scope">海選 · 複賽 · 決賽</span>
+        </div>
+        <div class="judges-grid">
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/ceolulu_uca" alt="盧志遠" />
+            <p class="judge-name">盧志遠</p>
+            <p class="judge-salon">拆卡 UNIQUE CREATE ART</p>
+            <p class="judge-bio">台灣色彩藝術領域代表性設計師</p>
+            <a href="https://www.instagram.com/ceolulu_uca/" target="_blank" rel="noopener" class="judge-ig" aria-label="盧志遠 Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/round2_seven" alt="Seven" />
+            <p class="judge-name">Seven</p>
+            <p class="judge-salon">ROUND²</p>
+            <p class="judge-bio">以幾何美學與精準色彩工藝著稱</p>
+            <a href="https://www.instagram.com/round2_seven/" target="_blank" rel="noopener" class="judge-ig" aria-label="Seven Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/una_santsai" alt="孫三才" />
+            <p class="judge-name">孫三才</p>
+            <p class="judge-salon">犀 UNA SALON</p>
+            <p class="judge-bio">深耕台灣原生美髮文化多年</p>
+            <a href="https://www.instagram.com/una_santsai/" target="_blank" rel="noopener" class="judge-ig" aria-label="孫三才 Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/epoch_eddie" alt="Eddie" />
+            <p class="judge-name">Eddie</p>
+            <p class="judge-salon">EPOCH SALON</p>
+            <p class="judge-bio">實驗性色彩設計風格引領者</p>
+            <a href="https://www.instagram.com/epoch_eddie/" target="_blank" rel="noopener" class="judge-ig" aria-label="Eddie Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/klatch_josh" alt="Josh" />
+            <p class="judge-name">Josh</p>
+            <p class="judge-salon">Klatch</p>
+            <p class="judge-bio">融合藝術與時尚的色彩設計師</p>
+            <a href="https://www.instagram.com/klatch_josh/" target="_blank" rel="noopener" class="judge-ig" aria-label="Josh Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 國際評審 -->
+      <div class="judges-group reveal">
+        <div class="judges-group-hd">
+          <span class="jg-flag">🇯🇵🇰🇷</span>
+          <span class="jg-title">國際評審</span>
+          <span class="jg-scope">決賽</span>
+        </div>
+        <div class="judges-grid">
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/ikueyamazaki_1913" alt="山崎伊久江" />
+            <p class="judge-name">山崎伊久江</p>
+            <p class="judge-salon">Belle Jouvence Salon</p>
+            <p class="judge-bio">日本頂尖染髮與色彩設計大師</p>
+            <a href="https://www.instagram.com/ikueyamazaki_1913/" target="_blank" rel="noopener" class="judge-ig" aria-label="山崎伊久江 Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/soucuts" alt="內田聰一郎" />
+            <p class="judge-name">內田聰一郎</p>
+            <p class="judge-salon">LECO</p>
+            <p class="judge-bio">日本當代髮藝設計先驅</p>
+            <a href="https://www.instagram.com/soucuts/" target="_blank" rel="noopener" class="judge-ig" aria-label="內田聰一郎 Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/morito_toshiki" alt="森戶俊樹" />
+            <p class="judge-name">森戶俊樹</p>
+            <p class="judge-salon">GORILLA BISCUITS</p>
+            <p class="judge-bio">融合街頭文化與精緻工藝的日本設計師</p>
+            <a href="https://www.instagram.com/morito_toshiki/" target="_blank" rel="noopener" class="judge-ig" aria-label="森戶俊樹 Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/__07hria" alt="いさな" />
+            <p class="judge-name">いさな</p>
+            <p class="judge-salon">ADITION</p>
+            <p class="judge-bio">日本前衛色彩美學代表人物</p>
+            <a href="https://www.instagram.com/__07hria/" target="_blank" rel="noopener" class="judge-ig" aria-label="いさな Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+          <div class="judge-card">
+            <img class="judge-avatar" src="https://unavatar.io/instagram/junoqueen0605" alt="Jeong Ok" />
+            <p class="judge-name">Jeong Ok</p>
+            <p class="judge-salon">韓國</p>
+            <p class="judge-bio">韓國頂尖美髮藝術家</p>
+            <a href="https://www.instagram.com/junoqueen0605" target="_blank" rel="noopener" class="judge-ig" aria-label="Jeong Ok Instagram"><i class="ti ti-brand-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <!-- ===================== MID CTA ===================== -->
   <section class="mid-cta">
@@ -1360,6 +1659,15 @@
           <summary>複賽與決賽需要自備模特兒嗎？</summary>
           <div class="answer"><p>是的，複賽與決賽皆須自備模特兒入場，現場完成造型實作。相關細節請參考賽制說明。</p></div>
         </details>
+      </div>
+      <div class="faq-contact reveal">
+        <div class="faq-contact-text">
+          <p>還有其他問題？</p>
+          <p>歡迎透過 Instagram 私訊我們，FIOLE 團隊將盡速為你解答。</p>
+        </div>
+        <a href="https://www.instagram.com/fiole.tw/" target="_blank" rel="noopener" class="faq-contact-btn">
+          私訊 @fiole.tw &nbsp;→
+        </a>
       </div>
     </div>
   </section>
