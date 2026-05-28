@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>原生製造海選｜2026 第五屆原生製造國際色彩大賞</title>
   <meta name="description" content="Down The Rabbit Hole — 2026 第五屆原生製造國際色彩大賞。線上海選現正開放，三階段賽制讓你的色彩被產業看見。" />
-  <meta property="og:title" content="線上海選｜2026 5th International Native Creation Color Awards" />
-  <meta property="og:description" content="Down The Rabbit Hole — 三階段賽制、自由主題、總獎勵價值新台幣 50 萬起。" />
-  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta property="og:title" content="原生製造 2026 第五屆國際色彩大賞｜線上海選開始" />
+  <meta property="og:description" content="海選截止 8/9，現在上傳作品集，讓你的色彩被產業看見。" />
+  <meta property="og:image" content="https://fiole-tw.github.io/native-creation-2026/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='75' font-size='80'%3E%E2%9C%A8%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -829,22 +831,37 @@
       border: 0.5px solid rgba(255,255,255,0.07);
     }
     .hero-prize-header {
-      background: #c0495f;
-      padding: 9px 22px;
+      background: linear-gradient(105deg, #a8324a 0%, #c0495f 50%, #d4607a 100%);
+      padding: 18px 28px 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-prize-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent, transparent 8px,
+        rgba(255,255,255,0.03) 8px, rgba(255,255,255,0.03) 9px
+      );
+      pointer-events: none;
     }
     .hero-prize-header-main {
-      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: #fff; font-family: var(--font-sans); font-weight: 600; line-height: 1;
+      font-size: 22px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #fff; font-family: var(--font-sans); font-weight: 800; line-height: 1;
+      position: relative;
     }
     .hero-prize-header-divider {
-      width: 1px; height: 12px; background: rgba(255,255,255,0.35); flex-shrink: 0;
+      width: 1px; align-self: stretch; background: rgba(255,255,255,0.30); flex-shrink: 0;
     }
     .hero-prize-header-sub {
-      font-size: 12px; letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.85); font-family: var(--font-sans); line-height: 1;
+      font-size: 18px; letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.92); font-family: var(--font-sans);
+      font-weight: 600; line-height: 1; position: relative;
     }
     .hero-prize-card-inner {
       display: flex;
