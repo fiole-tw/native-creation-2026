@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>壓力測試 — 原生製造報名後台</title>
+<style>
+  body { font-family: monospace; background: #0f1117; color: #e2e8f0; padding: 32px; max-width: 760px; }
+  h1 { color: #f29ab1; font-size: 18px; margin-bottom: 24px; }
+  #log { background: #1a2438; border-radius: 8px; padding: 20px; line-height: 2; font-size: 13px; min-height: 60px; }
+  .ok  { color: #6ee7b7; }
+  .err { color: #fca5a5; }
+  .pending { color: #fbbf24; }
+  button { background: #c0495f; color: #fff; border: none; padding: 12px 28px;
+           border-radius: 6px; font-size: 14px; cursor: pointer; margin-top: 16px; display: block; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  #summary { margin-top: 16px; font-size: 14px; color: #94a3b8; }
+
+  /* 照片選取區 */
+  .photo-section { margin-bottom: 24px; }
+  .photo-section label { display: block; font-size: 14px; color: #94a3b8; margin-bottom: 8px; }
+  .photo-drop {
+    border: 2px dashed #4a5570;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 13px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .photo-drop:hover, .photo-drop.over { border-color: #f29ab1; color: #f29ab1; }
+  .photo-drop input[type="file"] {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0; cursor: pointer;
+  }
+  .photo-drop .icon { font-size: 28px; margin-bottom: 6px; }
+  #photo-previews {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px;
+  }
+  .preview-thumb {
+    position: relative; width: 80px; height: 80px;
+  }
+  .preview-thumb img {
+    width: 80px; height: 80px; object-fit: cover;
+    border-radius: 6px; border: 1px solid #2d3f5f;
+  }
+  .preview-thumb .remove {
+    position: absolute; top: -6px; right: -6px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #c0495f; color: #fff; border: none;
+    font-size: 11px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    padding: 0; margin: 0;
+  }
+  #photo-status { font-size: 12px; color: #6ee7b7; margin-top: 6px; }
+
+  /* 設定區 */
+  .config { background: #1a2438; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px; font-size: 13px; }
+  .config-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .config-row label { color: #94a3b8; min-width: 80px; }
+  .config-row input[type="number"] {
+    background: #0f1117; border: 1px solid #4a5570;
+    color: #e2e8f0; border-radius: 4px; padding: 4px 8px;
+    font-size: 13px; width: 60px;
+  }
+  .config-note { font-size: 11px; color: #4a5570; }
+</style>
+</head>
+<body>
+<h1>壓力測試 — 原生製造報名後台</h1>
+
+<!-- 照片選取 -->
+<div class="photo-section">
+  <label>測試照片（可選）— 選取後每筆投稿都會帶同一批照片送出</label>
+  <div class="photo-drop" id="drop-area">
+    <input type="file" id="photo-input" accept="image/jpeg,image/png,image/jpg" multiple />
+    <div class="icon">✦</div>
+    <div>點擊或拖曳選取照片（JPG / PNG，可多選）</div>
+  </div>
+  <div id="photo-previews"></div>
+  <div id="photo-status"></div>
+</div>
+
+<!-- 設定 -->
+<div class="config">
+  <div class="config-row">
+    <label>測試筆數</label>
+    <input type="number" id="count-input" value="10" min="1" max="50" />
+    <span class="config-note">最多 50 筆</span>
+  </div>
+  <div class="config-row">
+    <label>間隔（秒）</label>
+    <input type="number" id="delay-input" value="0.8" min="0.3" max="5" step="0.1" />
+    <span class="config-note">建議 0.8 秒以上避免 GAS 限流</span>
+  </div>
+</div>
+
+<button id="btn" onclick="runTest()">開始送出測試資料</button>
+<div id="log">等待開始...</div>
+<div id="summary"></div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzCRZWl8tx_Wjk9gfLOxAeA6CKkcxHwbHtahtTWUAZrlJRlSEwi_r-s4aYTd7g8K5f4/exec';
+
+// 測試資料庫（10 筆，多餘的會循環）
+const testPool = [
+  { name_zh:'陳小雨', name_en:'Rain Chen',    birthday:'2001/03/15', phone:'0912111001', email:'rain@test.com',   ig:'@rain_hair',   salon:'色彩工作室',     years:'1～2年',   intro:'喜歡用冷色調表達情緒，以自然漸層為主要風格。' },
+  { name_zh:'林依晨', name_en:'Eva Lin',      birthday:'2000/07/22', phone:'0923222002', email:'eva@test.com',    ig:'@eva_color',   salon:'EPOCH',          years:'≦6個月',   intro:'想用漸層色挑戰色彩極限，探索紫藍系的可能性。' },
+  { name_zh:'黃柏翰', name_en:'Bryan Huang',  birthday:'1999/11/08', phone:'0934333003', email:'bryan@test.com',  ig:'@bryan_cut',   salon:'Klatch',         years:'2～3年',   intro:'街頭風格融入色彩藝術，創作靈感來自日系潮流。' },
+  { name_zh:'蔡依林', name_en:'Jolin Tsai',   birthday:'2002/05/30', phone:'0945444004', email:'jolin@test.com',  ig:'@jolin_wave',  salon:'ROUND2',         years:'6個月～1年', intro:'波浪與色彩的結合，追求動態感的染色設計。' },
+  { name_zh:'王大明', name_en:'David Wang',   birthday:'1998/09/12', phone:'0956555005', email:'david@test.com',  ig:'@david_salon', salon:'尤卡 UKA',       years:'3年以上',  intro:'以人為本的設計理念，善用暖色調打造溫柔質感。' },
+  { name_zh:'吳思穎', name_en:'Sonia Wu',     birthday:'2003/01/18', phone:'0967666006', email:'sonia@test.com',  ig:'@sonia_style', salon:'尤拿 Una',       years:'≦6個月',   intro:'首次參賽，希望透過比賽突破自己的色彩瓶頸。' },
+  { name_zh:'鄭宇豪', name_en:'Jason Cheng',  birthday:'2001/08/25', phone:'0978777007', email:'jason@test.com',  ig:'@jason_bento', salon:'Belle Jouvence', years:'1～2年',   intro:'受日系色彩美學影響，擅長細膩的斑斕漂染技法。' },
+  { name_zh:'許雅婷', name_en:'Amy Hsu',      birthday:'2000/04/03', phone:'0989888008', email:'amy@test.com',    ig:'@amy_color',   salon:'LECO',           years:'2～3年',   intro:'深受韓系風格啟發，擅長打造柔和的奶油漸層。' },
+  { name_zh:'廖家豪', name_en:'Kevin Liao',   birthday:'1999/12/20', phone:'0990999009', email:'kevin@test.com',  ig:'@kevin_hair',  salon:'ADITION',        years:'6個月～1年', intro:'喜歡混搭不同文化的色彩語言，作品充滿實驗精神。' },
+  { name_zh:'陳品妤', name_en:'Pinyu Chen',   birthday:'2002/10/09', phone:'0901000010', email:'pinyu@test.com',  ig:'@pinyu_wave',  salon:'GORILLA BISCUITS', years:'1～2年', intro:'以自然系色彩為核心，作品溫柔且富有生命力。' },
+];
+
+// ── 照片選取 ──
+let selectedPhotosBase64 = []; // [{name, mimeType, data}]
+const photoInput = document.getElementById('photo-input');
+const dropArea   = document.getElementById('drop-area');
+const previewsEl = document.getElementById('photo-previews');
+const statusEl   = document.getElementById('photo-status');
+
+dropArea.addEventListener('dragover', e => { e.preventDefault(); dropArea.classList.add('over'); });
+dropArea.addEventListener('dragleave', () => dropArea.classList.remove('over'));
+dropArea.addEventListener('drop', e => { e.preventDefault(); dropArea.classList.remove('over'); handleFiles([...e.dataTransfer.files]); });
+photoInput.addEventListener('change', () => { handleFiles([...photoInput.files]); photoInput.value = ''; });
+
+function handleFiles(files) {
+  const valid = files.filter(f => f.type.startsWith('image/') && f.size <= 5 * 1024 * 1024);
+  if (valid.length < files.length) alert(`有 ${files.length - valid.length} 張超過 5MB 或格式不符，已略過`);
+  Promise.all(valid.map(fileToBase64)).then(results => {
+    results.forEach((b64, i) => {
+      selectedPhotosBase64.push({ name: valid[i].name, mimeType: valid[i].type, data: b64 });
+    });
+    renderPreviews();
+  });
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = () => reject(new Error('讀取失敗'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderPreviews() {
+  previewsEl.innerHTML = '';
+  selectedPhotosBase64.forEach((p, idx) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'preview-thumb';
+    wrap.innerHTML = `
+      <img src="data:${p.mimeType};base64,${p.data}" alt="${p.name}" />
+      <button class="remove" onclick="removePhoto(${idx})">✕</button>
+    `;
+    previewsEl.appendChild(wrap);
+  });
+  statusEl.textContent = selectedPhotosBase64.length > 0
+    ? `✓ 已選 ${selectedPhotosBase64.length} 張照片，每筆測試投稿都會帶這些照片`
+    : '';
+}
+
+function removePhoto(idx) {
+  selectedPhotosBase64.splice(idx, 1);
+  renderPreviews();
+}
+
+// ── 測試邏輯 ──
+const logEl   = document.getElementById('log');
+const summary = document.getElementById('summary');
+
+function addLog(msg, cls) {
+  const line = document.createElement('div');
+  line.className = cls || '';
+  line.textContent = msg;
+  logEl.appendChild(line);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+async function sendOne(data, index) {
+  const ts = new Date().toISOString();
+  // 讓每筆 email 唯一，避免被去重
+  const uniqueData = {
+    ...data,
+    email: data.email.replace('@', `+t${index+1}@`),
+    timestamp: ts,
+    photos: selectedPhotosBase64,
+  };
+
+  addLog(`[${index+1}] 送出 ${data.name_zh}（附 ${selectedPhotosBase64.length} 張照片）…`, 'pending');
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      redirect: 'follow',
+      body: JSON.stringify(uniqueData),
+    });
+    const json = await res.json();
+    if (json.result === 'success') {
+      const lines = logEl.querySelectorAll('.pending');
+      const last = lines[lines.length - 1];
+      last.className = 'ok';
+      last.textContent = `[${index+1}] ✓ ${data.name_zh} — 成功寫入`;
+      return true;
+    } else {
+      throw new Error(json.error || '未知錯誤');
+    }
+  } catch (err) {
+    const lines = logEl.querySelectorAll('.pending');
+    if (lines.length) {
+      const last = lines[lines.length - 1];
+      last.className = 'err';
+      last.textContent = `[${index+1}] ✗ ${data.name_zh} — ${err.message}`;
+    }
+    return false;
+  }
+}
+
+async function runTest() {
+  const btn   = document.getElementById('btn');
+  const count = Math.min(50, Math.max(1, parseInt(document.getElementById('count-input').value) || 10));
+  const delay = Math.max(0.3, parseFloat(document.getElementById('delay-input').value) || 0.8) * 1000;
+
+  btn.disabled = true;
+  logEl.innerHTML = '';
+  summary.textContent = '';
+
+  const photoNote = selectedPhotosBase64.length > 0 ? `，每筆附 ${selectedPhotosBase64.length} 張照片` : '（未選照片）';
+  addLog(`開始壓力測試，共 ${count} 筆${photoNote}...`);
+  addLog('─'.repeat(44));
+
+  const start = Date.now();
+  let ok = 0, fail = 0;
+
+  for (let i = 0; i < count; i++) {
+    const data = testPool[i % testPool.length];
+    const success = await sendOne(data, i);
+    if (success) ok++; else fail++;
+    if (i < count - 1) await new Promise(r => setTimeout(r, delay));
+  }
+
+  const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+  addLog('─'.repeat(44));
+  addLog(`完成！成功 ${ok} 筆 / 失敗 ${fail} 筆 / 耗時 ${elapsed} 秒`, ok === count ? 'ok' : 'err');
+  summary.textContent = `測試結束。請到 Google Sheets 確認是否有 ${ok} 筆新資料。`;
+  btn.disabled = false;
+}
+</script>
+</body>
+</html>
