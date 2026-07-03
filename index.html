@@ -1797,8 +1797,8 @@
             <textarea name="intro" required placeholder="100 字以內，分享你對色彩的想法、靈感來源、或希望被看見的理由。"></textarea>
           </div>
           <div class="form-row full">
-            <label>染膏配方</label>
-            <textarea name="formula" placeholder="選填。請說明使用的染膏品牌、色號或調色比例。"></textarea>
+            <label>染膏配方 <span class="req">*</span></label>
+            <textarea name="formula" required placeholder="請說明作品使用之 Fiole 染膏配方"></textarea>
           </div>
           <!-- 照片上傳 -->
           <div class="form-row full">
@@ -2151,6 +2151,7 @@
       const salon    = form.salon.value.trim();
       const years    = form.years.value;
       const intro    = form.intro.value.trim();
+      const formula  = form.formula.value.trim();
       if (!nameZh)   { showToast('請填寫中文姓名', true); form.name_zh.focus(); return; }
       if (!nameEn)   { showToast('請填寫希望被稱呼的名稱', true); form.name_en.focus(); return; }
       if (!birthday) { showToast('請填寫出生年月日', true); form.birthday.focus(); return; }
@@ -2160,6 +2161,7 @@
       if (!salon)    { showToast('請填寫所屬店家或學校', true); form.salon.focus(); return; }
       if (!years)    { showToast('請選擇美髮年資', true); form.years.focus(); return; }
       if (!intro)    { showToast('請填寫創作理念／自我介紹', true); form.intro.focus(); return; }
+      if (!formula)  { showToast('請填寫染膏配方', true); form.formula.focus(); return; }
       if (selectedFiles.length < 3) {
         showToast('請至少上傳 3 張作品照片', true);
         uploadArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
