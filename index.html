@@ -1734,7 +1734,7 @@
       <div class="register-head reveal">
         <span class="section-tag">Register</span>
         <h2 class="display">立即報名</h2>
-        <p class="lead" style="margin:0 auto 12px;">完成以下三個步驟即完成投稿：</p>
+        <p class="lead" style="margin:0 auto 12px;">完成以下 2 步驟即完成投稿：</p>
         <div class="ig-steps">
           <div class="ig-step">
             <span class="ig-step-num">1</span>
@@ -1795,6 +1795,10 @@
           <div class="form-row full">
             <label>創作理念／自我介紹 <span class="req">*</span></label>
             <textarea name="intro" required placeholder="100 字以內，分享你對色彩的想法、靈感來源、或希望被看見的理由。"></textarea>
+          </div>
+          <div class="form-row full">
+            <label>染膏配方</label>
+            <textarea name="formula" placeholder="選填。請說明使用的染膏品牌、色號或調色比例。"></textarea>
           </div>
           <!-- 照片上傳 -->
           <div class="form-row full">
@@ -2192,6 +2196,7 @@
           salon,
           years,
           intro:    form.intro.value.trim(),
+          formula:  form.formula.value.trim(),
           photos
         };
         const res = await fetch(APPS_SCRIPT_URL, {
