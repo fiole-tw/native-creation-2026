@@ -1811,12 +1811,12 @@
           </div>
           <!-- 照片上傳 -->
           <div class="form-row full">
-            <label>作品照片 <span class="req">*</span><span style="font-weight:400;color:var(--ink-soft);margin-left:6px;">（正面、側面、特寫至少 3 張，JPG/PNG，單檔 ≦ 5MB）</span></label>
+            <label>作品照片 <span class="req">*</span><span style="font-weight:400;color:var(--ink-soft);margin-left:6px;">（正面、側面、特寫各 1 張，共 3 張，JPG/PNG，單檔 ≦ 5MB）</span></label>
             <div class="photo-upload-area" id="upload-area">
               <input type="file" id="photo-input" accept="image/jpeg,image/png,image/jpg" multiple />
               <div class="upload-icon">✦</div>
               <div class="upload-label">點擊或拖曳上傳作品照片</div>
-              <div class="upload-sub">JPG / PNG · 每張 ≦ 5MB · 至少上傳 3 張</div>
+              <div class="upload-sub">JPG / PNG · 每張 ≦ 5MB · 共 3 張</div>
             </div>
             <div id="photo-preview" class="photo-preview-grid" style="display:none;"></div>
             <div id="photo-count" class="preview-count"></div>
@@ -2095,7 +2095,13 @@
         if (f.size > 5 * 1024 * 1024) { showToast(`${f.name} 超過 5MB 限制`, true); return false; }
         return true;
       });
-      selectedFiles = [...selectedFiles, ...valid];
+      const combined = [...selectedFiles, ...valid];
+      if (combined.length > 3) {
+        showToast('最多上傳 3 張作品照片（正面、側面、特寫）', true);
+        selectedFiles = combined.slice(0, 3);
+      } else {
+        selectedFiles = combined;
+      }
       renderPreviews();
     }
     function renderPreviews() {
