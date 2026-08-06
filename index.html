@@ -11,6 +11,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fiole-tw.github.io/native-creation-2026/?v=2" />
   <!-- JSON-LD 結構化資料 -->
   <script type="application/ld+json">
   {
@@ -2253,6 +2254,12 @@
         setSubmitProgress('送出報名 <span class="btn-arrow">→</span>');
       }
     });
+  </script>
+  <script>
+    // 讓網址列自動帶版本號，確保社群分享時抓到最新 OG 快取
+    if (!location.search.includes('v=')) {
+      history.replaceState(null, '', '?v=2');
+    }
   </script>
 </body>
 </html>
