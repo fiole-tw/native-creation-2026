@@ -1,24 +1,21 @@
-function testAuth() {
-  try {
-    var folder = DriveApp.getFolderById('1ha0GBUdY2V_8uk_lpckXcu8_DeovmMZR');
-    Logger.log("資料夾名稱：" + folder.getName());
-    var file = folder.createFile('測試.txt', 'ok', MimeType.PLAIN_TEXT);
-    Logger.log("建立成功：" + file.getName());
-    file.setTrashed(true);
-    Logger.log("全部正常！");
-  } catch(e) {
-    Logger.log("錯誤：" + e.toString());
-  }
-}
-
 const DRIVE_FOLDER_ID = '1ha0GBUdY2V_8uk_lpckXcu8_DeovmMZR';
 const SHEET_ID        = '1YPvbtBzGgiKx3_4P7egMzYsqqLt9C0sVTwtyDcIVsRg';
 const SHEET_NAME      = '報名資料';
 
 const HEADERS = [
-  '時間戳記','中文姓名','稱呼/暱稱','出生年月日','聯絡電話',
-  'Email','Instagram','所屬店家/學校','美髮年資','創作理念',
-  '照片資料夾連結','照片數量'
+  '時間戳記',
+  '中文姓名',
+  '稱呼/暱稱',
+  '出生年月日',
+  '聯絡電話',
+  'Email',
+  'Instagram',
+  '所屬店家/學校',
+  '美髮年資',
+  '創作理念',
+  '染膏配方',
+  '照片資料夾連結',
+  '照片數量'
 ];
 
 function doPost(e) {
@@ -49,6 +46,7 @@ function doPost(e) {
       data.salon     || '',
       data.years     || '',
       data.intro     || '',
+      data.formula   || '',
       folderUrl,
       photoCount
     ]);
@@ -89,6 +87,8 @@ function savePhotosToDrive(data) {
   const folderName   = `${data.name_zh || 'unknown'}_${safeTimestamp}`;
   const applicantDir = parentFolder.createFolder(folderName);
 
+  // setSharing 已移除：Workspace 政策在 web app context 中禁止設定 ANYONE_WITH_LINK
+
   for (const photo of photos) {
     try {
       const decoded = Utilities.base64Decode(photo.data);
@@ -109,4 +109,29 @@ function jsonResponse(obj) {
   return ContentService
     .createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function testDoPost() {
+  DriveApp.getFolderById(DRIVE_FOLDER_ID);
+
+  const fakeEvent = {
+    postData: {
+      contents: JSON.stringify({
+        timestamp: new Date().toISOString(),
+        name_zh:  '測試姓名',
+        name_en:  'Test',
+        birthday: '2000/01/01',
+        phone:    '0912000000',
+        email:    'test@test.com',
+        ig:       '@test_ig',
+        salon:    'FIOLE 測試店',
+        years:    '1～2年',
+        intro:    '這是一則測試投稿。',
+        formula:  'Fiole 測試色號',
+        photos:   []
+      })
+    }
+  };
+  const result = doPost(fakeEvent);
+  Logger.log(result.getContent());
 }
