@@ -42,7 +42,7 @@
     "url": "https://fiole-tw.github.io/native-creation-2026/",
     "image": "https://fiole-tw.github.io/native-creation-2026/assets/og-image.jpg",
     "inLanguage": "zh-TW",
-    "isAccessibleForFree": true,
+    "isAccessibleForFree": false,
     "offers": {
       "@type": "Offer",
       "name": "線上海選報名",
@@ -1368,6 +1368,209 @@
     @media (max-width: 600px) {
       .faq-contact { flex-direction: column; text-align: center; }
     }
+
+    /* ─── 決賽 8 強選手 ─── */
+    .finalists {
+      padding: 110px 24px;
+      background: linear-gradient(180deg, rgba(252,224,232,0.35) 0%, rgba(250,250,247,0.5) 100%);
+      backdrop-filter: blur(12px) saturate(1.1);
+    }
+    .finalists-head { text-align: center; margin-bottom: 56px; }
+    .finalists-grid {
+      max-width: var(--max); margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .finalist-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 0.5px solid rgba(255,255,255,0.9);
+      border-radius: var(--radius-m);
+      padding: 28px 22px 22px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .finalist-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+    .finalist-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 0%, rgba(217,107,138,0.12), transparent 60%);
+    }
+    .finalist-num {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-soft); margin-bottom: 14px; position: relative;
+    }
+    .finalist-avatar-placeholder {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-200) 0%, var(--pink-500) 100%);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-family: var(--font-display); font-style: italic;
+      font-size: 28px; color: #fff; font-weight: 500;
+      box-shadow: 0 4px 16px rgba(217,107,138,0.35);
+      position: relative;
+    }
+    .finalist-name {
+      font-size: 18px; font-weight: 600; color: var(--ink);
+      margin-bottom: 4px; line-height: 1.2; position: relative;
+    }
+    .finalist-salon {
+      font-size: 12px; color: var(--ink-soft);
+      margin-bottom: 14px; letter-spacing: 0.03em; position: relative;
+    }
+    .finalist-ig {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--ink-soft);
+      padding: 6px 12px;
+      background: rgba(26,36,56,0.05);
+      border-radius: var(--radius-pill);
+      border: 0.5px solid rgba(26,36,56,0.12);
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none; position: relative;
+    }
+    .finalist-ig:hover { background: var(--pink-100); color: var(--pink-500); border-color: var(--pink-300); }
+    .finalist-note {
+      margin-top: 24px; text-align: center;
+      font-size: 13px; color: var(--ink-soft);
+    }
+    @media (max-width: 900px) { .finalists-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px)  { .finalists-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .finalist-card { padding: 22px 16px 18px; }
+      .finalist-avatar-placeholder { width: 64px; height: 64px; font-size: 22px; }
+      .finalist-name { font-size: 15px; }
+    }
+
+    /* ─── 入場資訊 & 當日賽程 ─── */
+    .event-info {
+      padding: 110px 24px;
+      background: linear-gradient(180deg, rgba(250,250,247,0.5) 0%, rgba(219,233,243,0.3) 100%);
+      backdrop-filter: blur(12px) saturate(1.1);
+    }
+    .event-inner { max-width: var(--max); margin: 0 auto; }
+    .event-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr;
+      gap: 32px; align-items: start;
+    }
+    /* 入場資訊卡 */
+    .entry-card {
+      background: linear-gradient(145deg, #1a2438 0%, #2d3a52 100%);
+      border-radius: var(--radius-l);
+      padding: 40px 32px;
+      color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .entry-card::after {
+      content: ""; position: absolute; bottom: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,107,138,0.35) 0%, transparent 70%);
+      filter: blur(20px);
+    }
+    .entry-label {
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); margin-bottom: 16px; display: block;
+    }
+    .entry-free {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 48px; font-weight: 500; color: #fff;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .entry-free-note {
+      font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+    }
+    .entry-divider {
+      border: none; border-top: 0.5px solid rgba(255,255,255,0.15);
+      margin: 0 0 24px;
+    }
+    .entry-detail {
+      display: flex; flex-direction: column; gap: 14px; position: relative;
+    }
+    .entry-row {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .entry-row dt {
+      font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .entry-row dd {
+      font-size: 15px; font-weight: 500; color: #fff; line-height: 1.4;
+    }
+    .entry-row dd small { display: block; font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 400; margin-top: 2px; }
+    .entry-open-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 24px; padding: 8px 16px;
+      background: rgba(217,107,138,0.25);
+      border: 1px solid rgba(217,107,138,0.4);
+      border-radius: var(--radius-pill);
+      font-size: 13px; font-weight: 500; color: #f29ab1;
+      position: relative;
+    }
+    .entry-open-badge::before {
+      content: ""; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pink-300); flex-shrink: 0;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 0 0 rgba(242,154,177,0.5); }
+      50%      { box-shadow: 0 0 0 5px rgba(242,154,177,0); }
+    }
+    /* 賽程時間表 */
+    .day-schedule {
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(16px);
+      border: 0.5px solid rgba(26,36,56,0.10);
+      border-radius: var(--radius-l);
+      overflow: hidden;
+    }
+    .day-sched-header {
+      padding: 20px 28px 16px;
+      border-bottom: 0.5px solid rgba(26,36,56,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .day-sched-title { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: 0.04em; }
+    .day-sched-date  { font-size: 12px; color: var(--pink-500); font-weight: 500; }
+    .day-sched-list  { padding: 8px 0; }
+    .day-sched-row {
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 16px 28px;
+      border-bottom: 0.5px solid rgba(26,36,56,0.06);
+      transition: background 0.15s;
+    }
+    .day-sched-row:last-child { border-bottom: none; }
+    .day-sched-row:hover { background: rgba(255,255,255,0.5); }
+    .day-sched-row.highlight { background: rgba(217,107,138,0.06); }
+    .day-sched-time {
+      font-family: var(--font-display); font-style: normal;
+      font-size: 15px; font-weight: 500; color: var(--ink);
+      flex-shrink: 0; width: 56px; padding-top: 2px;
+    }
+    .day-sched-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--silver-300); flex-shrink: 0; margin-top: 5px;
+    }
+    .day-sched-row.highlight .day-sched-dot { background: var(--pink-500); }
+    .day-sched-body { flex: 1; }
+    .day-sched-event { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+    .day-sched-sub   { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
+    .day-sched-tag {
+      display: inline-block; font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: var(--radius-pill);
+      background: var(--pink-100); color: var(--pink-500);
+      margin-bottom: 6px;
+    }
+    @media (max-width: 860px) {
+      .event-grid { grid-template-columns: 1fr; }
+      .entry-card { padding: 32px 24px; }
+    }
+    @media (max-width: 520px) {
+      .event-info { padding: 64px 16px; }
+      .day-sched-row { padding: 14px 20px; gap: 14px; }
+      .day-sched-time { font-size: 13px; width: 48px; }
+    }
   </style>
 </head>
 <body>
@@ -1377,12 +1580,12 @@
   <!-- 手機全螢幕選單 -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="導覽選單">
     <button class="mobile-menu-close" id="close-mobile-menu" aria-label="關閉選單">✕</button>
-    <a href="#about"    class="mobile-nav-link">關於賽事</a>
-    <a href="#stages"   class="mobile-nav-link">賽制</a>
-    <a href="#awards"   class="mobile-nav-link">獎項</a>
-    <a href="#judges"   class="mobile-nav-link">評審</a>
-    <a href="#faq"      class="mobile-nav-link">FAQ</a>
-    <a href="#judges" class="btn btn-primary mobile-nav-link">評審陣容 →</a>
+    <a href="#finalists" class="mobile-nav-link">選手名單</a>
+    <a href="#event"     class="mobile-nav-link">入場資訊</a>
+    <a href="#judges"    class="mobile-nav-link">評審</a>
+    <a href="#awards"    class="mobile-nav-link">獎項</a>
+    <a href="#faq"       class="mobile-nav-link">FAQ</a>
+    <a href="#finalists" class="btn btn-primary mobile-nav-link">決賽 8 強 →</a>
   </div>
 
   <!-- 送出中全螢幕等待畫面 -->
@@ -1404,12 +1607,12 @@
         </span>
       </a>
       <div class="nav-links">
-        <a href="#about">關於賽事</a>
-        <a href="#stages">賽制</a>
-        <a href="#awards">獎項</a>
+        <a href="#finalists">選手名單</a>
+        <a href="#event">入場資訊</a>
         <a href="#judges">評審</a>
+        <a href="#awards">獎項</a>
         <a href="#faq">FAQ</a>
-        <a href="#judges" class="btn btn-primary nav-register-btn">評審陣容 <span class="btn-arrow">→</span></a>
+        <a href="#finalists" class="btn btn-primary nav-register-btn">決賽 8 強 <span class="btn-arrow">→</span></a>
         <button class="nav-toggle" id="nav-toggle" aria-label="選單">≡</button>
       </div>
     </div>
@@ -1449,8 +1652,8 @@
           </div>
         </div>
         <div class="hero-cta">
-          <a href="#judges" class="btn btn-primary">評審陣容 <span class="btn-arrow">→</span></a>
-          <a href="#stages" class="btn btn-ghost">賽制說明</a>
+          <a href="#finalists" class="btn btn-primary">決賽 8 強 <span class="btn-arrow">→</span></a>
+          <a href="#event" class="btn btn-ghost">入場資訊</a>
         </div>
         <div class="hero-countdown-wrap">
           <p class="hero-countdown-eyebrow">距離決賽</p>
@@ -1681,6 +1884,140 @@
     </div>
     <p class="awards-note reveal">＊日幣獎金由日本 FIOLE 總公司特別提供</p>
   </section>
+  <!-- ===================== 決賽 8 強選手 ===================== -->
+  <section class="finalists" id="finalists">
+    <div class="container">
+      <div class="finalists-head reveal">
+        <span class="section-tag">Finalists</span>
+        <h2 class="display">決賽 8 強</h2>
+        <p class="lead" style="margin:0 auto;">以下八位選手經海選、複賽層層晉級，將於 11/10 登上 Zepp New Taipei 舞台，以 30 分鐘現場實作角逐冠軍。</p>
+      </div>
+      <div class="finalists-grid">
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 02</p>
+          <div class="finalist-avatar-placeholder">G</div>
+          <p class="finalist-name">Gary</p>
+          <p class="finalist-salon">Little Secret</p>
+          <a href="https://www.instagram.com/gary_littlesecret/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @gary_littlesecret</a>
+        </div>
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 05</p>
+          <div class="finalist-avatar-placeholder">羅</div>
+          <p class="finalist-name">羅恩</p>
+          <p class="finalist-salon">Dot(s)</p>
+          <a href="https://www.instagram.com/ro_nn_nn/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @ro_nn_nn</a>
+        </div>
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 08</p>
+          <div class="finalist-avatar-placeholder">N</div>
+          <p class="finalist-name">NN</p>
+          <p class="finalist-salon">Teamo</p>
+          <a href="https://www.instagram.com/nn._.teamo/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @nn._.teamo</a>
+        </div>
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 10</p>
+          <div class="finalist-avatar-placeholder">雷</div>
+          <p class="finalist-name">雷</p>
+          <p class="finalist-salon">oásis hair</p>
+          <a href="https://www.instagram.com/zeze.0o0/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @zeze.0o0</a>
+        </div>
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 11</p>
+          <div class="finalist-avatar-placeholder">A</div>
+          <p class="finalist-name">Ayu</p>
+          <p class="finalist-salon">oásis hair</p>
+          <a href="https://www.instagram.com/ayuwang__/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @ayuwang__</a>
+        </div>
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 12</p>
+          <div class="finalist-avatar-placeholder">美</div>
+          <p class="finalist-name">美0</p>
+          <p class="finalist-salon">oásis hair</p>
+          <a href="https://www.instagram.com/mei_0_/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @mei_0_</a>
+        </div>
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 13</p>
+          <div class="finalist-avatar-placeholder">王</div>
+          <p class="finalist-name">王阡</p>
+          <p class="finalist-salon">oásis hair</p>
+          <a href="https://www.instagram.com/aaaabbbb21921/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @aaaabbbb21921</a>
+        </div>
+        <div class="finalist-card reveal">
+          <p class="finalist-num">No. 14</p>
+          <div class="finalist-avatar-placeholder">N</div>
+          <p class="finalist-name">Nochic</p>
+          <p class="finalist-salon">oásis hair</p>
+          <a href="https://www.instagram.com/nochic_112/" target="_blank" rel="noopener" class="finalist-ig"><i class="ti ti-brand-instagram"></i> @nochic_112</a>
+        </div>
+      </div>
+      <p class="finalist-note reveal">＊排序依複賽編號次序　＊台灣區 8 強將與國際參賽者同場競技</p>
+    </div>
+  </section>
+
+  <!-- ===================== 入場資訊 & 當日賽程 ===================== -->
+  <section class="event-info" id="event">
+    <div class="event-inner">
+      <div class="reveal" style="text-align:center;margin-bottom:56px;">
+        <span class="section-tag">Event Info</span>
+        <h2 class="display">入場資訊 &amp; 當日賽程</h2>
+        <p class="lead" style="margin:0 auto;">11/10（二）憑票入場，一起見證這場跨國色彩盛典。</p>
+      </div>
+      <div class="event-grid">
+        <!-- 入場資訊 -->
+        <div class="entry-card reveal">
+          <span class="entry-label">Admission</span>
+          <p class="entry-free">憑票入場</p>
+          <p class="entry-free-note">請持有效票券入場</p>
+          <hr class="entry-divider" />
+          <dl class="entry-detail">
+            <div class="entry-row">
+              <dt>開放入場</dt>
+              <dd>14:30</dd>
+            </div>
+            <div class="entry-row">
+              <dt>決賽時間</dt>
+              <dd>15:00 – 18:00</dd>
+            </div>
+            <div class="entry-row">
+              <dt>地點</dt>
+              <dd>Zepp New Taipei<small>新北市新莊區新北大道四段 3 號 8 樓</small></dd>
+            </div>
+            <div class="entry-row">
+              <dt>交通</dt>
+              <dd><small>新北市新莊區，鄰近新北市政府站</small></dd>
+            </div>
+          </dl>
+          <div class="entry-open-badge">憑票 · 14:30 開放入場</div>
+        </div>
+        <!-- 當日賽程 -->
+        <div class="day-schedule reveal">
+          <div class="day-sched-header">
+            <span class="day-sched-title">當日賽程</span>
+            <span class="day-sched-date">11/10（二）</span>
+          </div>
+          <div class="day-sched-list">
+            <div class="day-sched-row">
+              <span class="day-sched-time">14:30</span>
+              <div class="day-sched-dot"></div>
+              <div class="day-sched-body">
+                <p class="day-sched-event">開放入場</p>
+                <p class="day-sched-sub">Zepp New Taipei 8F</p>
+              </div>
+            </div>
+            <div class="day-sched-row highlight">
+              <span class="day-sched-time">15:00</span>
+              <div class="day-sched-dot"></div>
+              <div class="day-sched-body">
+                <p class="day-sched-event">15:00 – 18:00</p>
+                <p class="day-sched-sub">台灣 × 新馬 × 韓國 × 泰國同場競技</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== JUDGES ===================== -->
   <section class="judges" id="judges">
     <div class="container">
@@ -1797,10 +2134,10 @@
   <!-- ===================== MID CTA ===================== -->
   <section class="mid-cta">
     <div class="mid-cta-inner reveal">
-      <h2 class="display">決賽即將登場！</h2>
-      <p>11/10 Zepp New Taipei，見證台灣與國際頂尖色彩大師同場競技。</p>
-      <a href="#judges" class="btn-primary-lg">評審陣容 <span class="btn-arrow">→</span></a>
-      <p class="mid-cta-note">決賽 · 11/10 · Zepp New Taipei · 國際賽事暨頒獎典禮</p>
+      <h2 class="display">11/10 決賽登場！</h2>
+      <p>Zepp New Taipei，憑票入場，見證台灣與國際頂尖新秀同場競技。</p>
+      <a href="#event" class="btn-primary-lg">入場資訊 <span class="btn-arrow">→</span></a>
+      <p class="mid-cta-note">14:30 開放入場 · 15:00 決賽開始 · 當日頒獎</p>
     </div>
   </section>
   <!-- ===================== REGISTER ===================== -->
@@ -1948,8 +2285,9 @@
       </div>
       <div class="footer-col">
         <h4>賽事資訊</h4>
-        <a href="#about">關於賽事</a>
-        <a href="#stages">賽制說明</a>
+        <a href="#finalists">決賽 8 強</a>
+        <a href="#event">入場資訊</a>
+        <a href="#judges">評審陣容</a>
         <a href="#awards">獎項一覽</a>
         <a href="#faq">常見問題</a>
       </div>
