@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>原生製造海選｜2026 第五屆原生製造國際色彩大賞</title>
-  <meta name="description" content="Down The Rabbit Hole — 2026 第五屆原生製造國際色彩大賞。線上海選現正開放，三階段賽制讓你的色彩被產業看見。" />
-  <meta property="og:title" content="原生製造 2026 第五屆國際色彩大賞｜線上海選開始" />
-  <meta property="og:description" content="海選截止 8/23，現在上傳作品集，讓你的色彩被產業看見。" />
+  <title>原生製造 2026｜決賽倒數 · 11/10 Zepp New Taipei</title>
+  <meta name="description" content="Down The Rabbit Hole — 2026 第五屆原生製造國際色彩大賞。決賽 11/10 於 Zepp New Taipei 盛大登場。" />
+  <meta property="og:title" content="原生製造 2026 第五屆國際色彩大賞｜決賽 11/10 Zepp New Taipei" />
+  <meta property="og:description" content="決賽即將登場，11/10 Zepp New Taipei，見證台灣與國際頂尖色彩大師同場競技。" />
   <meta property="og:image" content="https://fiole-tw.github.io/native-creation-2026/assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -495,6 +495,29 @@
       .awards-grid { grid-template-columns: 1fr; }
       .award-card.featured { grid-column: span 1; }
     }
+    /* REGISTER CLOSED */
+    .register-closed-card {
+      max-width: 560px; margin: 0 auto;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: var(--radius-l);
+      box-shadow: var(--shadow-card);
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .closed-icon {
+      font-size: 36px; margin-bottom: 20px; opacity: 0.6;
+    }
+    .register-closed-card h3 {
+      font-size: clamp(20px, 2.5vw, 28px); margin-bottom: 12px;
+    }
+    .register-closed-card p { color: var(--ink-soft); line-height: 1.8; }
+    @media (max-width: 600px) {
+      .register-closed-card { padding: 32px 24px; }
+    }
+
     /* REGISTER */
     .register {
       padding: 110px 24px;
@@ -1049,6 +1072,47 @@
       font-size: 14px; color: var(--ink-soft); font-style: italic;
     }
 
+    /* ─── 決賽資訊卡 ─── */
+    .hero-final-info {
+      display: flex; align-items: center; gap: 20px;
+      margin-top: 20px;
+      padding: 20px 28px;
+      background: linear-gradient(135deg, rgba(26,36,56,0.92) 0%, rgba(50,35,60,0.90) 100%);
+      border-radius: var(--radius-m);
+      border: 1px solid rgba(217,107,138,0.35);
+      box-shadow: 0 8px 32px rgba(26,36,56,0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .hero-final-badge {
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--pink-500) 0%, #b0435e 100%);
+      color: #fff;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.12em;
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+    .hero-final-details { color: #fff; }
+    .hero-final-date {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 500; line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .hero-final-venue {
+      font-size: 16px; font-weight: 600; opacity: 0.95;
+      margin-bottom: 2px;
+    }
+    .hero-final-addr { font-size: 12px; opacity: 0.6; margin-bottom: 6px; }
+    .hero-final-note {
+      font-size: 12px; opacity: 0.7;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 6px; margin-top: 4px;
+    }
+    @media (max-width: 600px) {
+      .hero-final-info { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px 20px; }
+    }
+
     /* ─── 中途 CTA ─── */
     .mid-cta {
       text-align: center;
@@ -1318,7 +1382,7 @@
     <a href="#awards"   class="mobile-nav-link">獎項</a>
     <a href="#judges"   class="mobile-nav-link">評審</a>
     <a href="#faq"      class="mobile-nav-link">FAQ</a>
-    <a href="#register" class="btn btn-primary mobile-nav-link">立即報名 →</a>
+    <a href="#judges" class="btn btn-primary mobile-nav-link">評審陣容 →</a>
   </div>
 
   <!-- 送出中全螢幕等待畫面 -->
@@ -1345,7 +1409,7 @@
         <a href="#awards">獎項</a>
         <a href="#judges">評審</a>
         <a href="#faq">FAQ</a>
-        <a href="#register" class="btn btn-primary nav-register-btn">立即報名 <span class="btn-arrow">→</span></a>
+        <a href="#judges" class="btn btn-primary nav-register-btn">評審陣容 <span class="btn-arrow">→</span></a>
         <button class="nav-toggle" id="nav-toggle" aria-label="選單">≡</button>
       </div>
     </div>
@@ -1385,22 +1449,32 @@
           </div>
         </div>
         <div class="hero-cta">
-          <a href="#register" class="btn btn-primary">前往報名 <span class="btn-arrow">→</span></a>
-          <a href="#stages" class="btn btn-ghost">了解賽制</a>
+          <a href="#judges" class="btn btn-primary">評審陣容 <span class="btn-arrow">→</span></a>
+          <a href="#stages" class="btn btn-ghost">賽制說明</a>
         </div>
         <div class="hero-countdown-wrap">
-          <p class="hero-countdown-eyebrow">距離海選截止</p>
-          <div class="hero-countdown" id="hero-countdown" aria-label="距海選截止倒數">
+          <p class="hero-countdown-eyebrow">距離決賽</p>
+          <div class="hero-countdown" id="hero-countdown" aria-label="距決賽倒數">
             <div class="countdown-unit"><span class="countdown-num" id="cd-days">--</span><span class="countdown-lbl">天</span></div>
             <div class="countdown-unit"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-lbl">時</span></div>
             <div class="countdown-unit"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-lbl">分</span></div>
             <div class="countdown-unit"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-lbl">秒</span></div>
           </div>
         </div>
+        <!-- 決賽資訊卡（放大顯示） -->
+        <div class="hero-final-info">
+          <div class="hero-final-badge">決賽</div>
+          <div class="hero-final-details">
+            <p class="hero-final-date">11 / 10（二）</p>
+            <p class="hero-final-venue">Zepp New Taipei</p>
+            <p class="hero-final-addr">新北大道四段 3 號 8 樓</p>
+            <p class="hero-final-note">台灣 × 新馬 × 韓國 × 泰國　同場競技</p>
+          </div>
+        </div>
         <dl class="hero-meta">
-          <div><dt>海選</dt><dd>即日起 — 08/23<br><small style="opacity:0.7;">線上投稿</small></dd></div>
+          <div><dt>海選</dt><dd>已截止 · 08/23<br><small style="opacity:0.7;">線上投稿</small></dd></div>
           <div><dt>複賽 · 09/21</dt><dd>POPOP TAIPEI 瓶蓋工廠台北製造所<br><small style="opacity:0.7;">現場實作賽</small></dd></div>
-          <div><dt>決賽 · 11/10</dt><dd>Zepp New Taipei<br><small style="opacity:0.7;">現場實作賽</small></dd></div>
+          <div style="background:rgba(255,255,255,0.3);border-radius:12px;padding:8px 12px;"><dt style="color:var(--pink-500);font-weight:700;">決賽 · 11/10</dt><dd><strong>Zepp New Taipei</strong><br><small style="opacity:0.7;">台灣 × 新馬 × 韓國 × 泰國</small></dd></div>
         </dl>
       </div>
     </div>
@@ -1660,15 +1734,6 @@
               <a href="https://www.instagram.com/epoch_eddie/" target="_blank" rel="noopener" class="judge-ig" aria-label="Eddie Instagram"><i class="ti ti-brand-instagram"></i></a>
             </div>
           </div>
-          <div class="judge-card">
-            <img class="judge-avatar" src="assets/judge-Josh.jpg" alt="Josh" style="object-position: center 20%;" />
-            <div class="judge-card-body">
-              <p class="judge-name">JOSH</p>
-              <p class="judge-salon">KLATCH</p>
-              <p class="judge-bio">Klatch Hair Salon 創辦人。以精準的「客製化區域經營智慧」與破格的公司福利制度聞名，擅長因應在地客群特性彈性調配風格團隊。</p>
-              <a href="https://www.instagram.com/klatch_josh/" target="_blank" rel="noopener" class="judge-ig" aria-label="Josh Instagram"><i class="ti ti-brand-instagram"></i></a>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -1732,37 +1797,27 @@
   <!-- ===================== MID CTA ===================== -->
   <section class="mid-cta">
     <div class="mid-cta-inner reveal">
-      <h2 class="display">你的作品，值得被看見！</h2>
-      <p>從這裡開始你的第一步。</p>
-      <a href="#register" class="btn-primary-lg">立即報名 <span class="btn-arrow">→</span></a>
-      <p class="mid-cta-note">截止日期 08/23 · 免報名費 · 火熱徵件中</p>
+      <h2 class="display">決賽即將登場！</h2>
+      <p>11/10 Zepp New Taipei，見證台灣與國際頂尖色彩大師同場競技。</p>
+      <a href="#judges" class="btn-primary-lg">評審陣容 <span class="btn-arrow">→</span></a>
+      <p class="mid-cta-note">決賽 · 11/10 · Zepp New Taipei · 國際賽事暨頒獎典禮</p>
     </div>
   </section>
   <!-- ===================== REGISTER ===================== -->
   <section class="register" id="register">
     <div class="register-wrap">
       <div class="register-head reveal">
-        <span class="section-tag">Register</span>
-        <h2 class="display">立即報名</h2>
-        <p class="lead" style="margin:0 auto 12px;">完成以下 2 步驟即完成投稿：</p>
-        <div class="ig-steps">
-          <div class="ig-step">
-            <span class="ig-step-num">1</span>
-            <div class="ig-step-body">
-              <strong>在 IG 發布參賽作品</strong>
-              <span>使用個人公開帳號，標記 <a href="https://www.instagram.com/fiole.tw/" target="_blank" rel="noopener">@fiole_tw</a>，並加上 #第五屆原生製造國際色彩大賞</span>
-            </div>
-          </div>
-          <div class="ig-step">
-            <span class="ig-step-num">2</span>
-            <div class="ig-step-body">
-              <strong>填寫下方表單並上傳作品照片</strong>
-              <span>填妥個人資料與作品說明，完成投稿</span>
-            </div>
-          </div>
-        </div>
+        <span class="section-tag">海選已截止</span>
+        <h2 class="display">感謝所有參賽者</h2>
+        <p class="lead" style="margin:0 auto;">海選已於 2026 年 8 月 23 日截止，感謝所有提交作品的設計師！<br>入圍名單將於 @fiole.tw 官方 IG 公告，敬請關注。</p>
       </div>
-      <form class="register-card reveal" id="register-form" novalidate>
+      <div class="register-closed-card reveal">
+        <div class="closed-icon">✦</div>
+        <h3>16 強入圍名單</h3>
+        <p>入圍者將由主辦單位透過 Instagram <strong>@fiole.tw</strong> 公告，並另以 Email 個別通知。</p>
+        <a href="https://www.instagram.com/fiole.tw/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:20px;">前往 @fiole.tw 關注最新消息 →</a>
+      </div>
+      <form class="register-card reveal" id="register-form" novalidate style="display:none;">
         <div class="form-grid">
           <div class="form-row">
             <label>中文姓名 <span class="req">*</span></label>
@@ -1975,14 +2030,14 @@
   <script>
     // ============ 倒數計時器 ============
     (function() {
-      const deadline = new Date('2026-08-23T23:59:59+08:00');
+      const deadline = new Date('2026-11-10T00:00:00+08:00');
       const el = document.getElementById('hero-countdown');
       if (!el) return;
       function pad(n) { return String(n).padStart(2, '0'); }
       function tick() {
         const diff = deadline - new Date();
         if (diff <= 0) {
-          el.innerHTML = '<span class="countdown-expired">海選已截止</span>';
+          el.innerHTML = '<span class="countdown-expired">決賽登場 🎉</span>';
           return;
         }
         const d = Math.floor(diff / 86400000);
